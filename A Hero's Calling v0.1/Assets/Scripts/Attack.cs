@@ -6,41 +6,37 @@ public class Attack : MonoBehaviour
 {
     private GameObject cube;
     private LineRenderer LR;
+    Vector3 WorldPosition;
+    
+    
     // Start is called before the first frame update
     void Start()
     {
         cube = GameObject.Find("Cube");
+        
        
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*if (Input.GetMouseButtonDown(0))
-        {
-            MakeLine(cube.transform.position.x, Input.mousePosition.x, cube.transform.position.y, Input.mousePosition.y);
-        }*/
+        Vector3 MousePos = Input.mousePosition;
+        MousePos.z = Camera.main.nearClipPlane;
+        WorldPosition = Camera.main.ScreenToWorldPoint(MousePos);
+       
         LR = GetComponent<LineRenderer>();
 
         List<Vector3> pos = new List<Vector3>();
         pos.Add(new Vector3(cube.transform.position.x, cube.transform.position.y));
-        pos.Add(new Vector3(Input.mousePosition.x, Input.mousePosition.y));
+        pos.Add(new Vector3(WorldPosition.x, WorldPosition.y));
         LR.startWidth = 0.5f;
         LR.endWidth = 0.5f;
         LR.SetPositions(pos.ToArray());
         LR.useWorldSpace = true;
-        Debug.Log(Input.mousePosition);
+        Debug.Log(WorldPosition);
         Debug.Log(cube.transform.position);
 
     }
 
-    /*void MakeLine(float x1, float x2, float y1, float y2)
-    {
-        float run = x2 - x1;
-        float rise = y2 - y1;
-        float m = rise / run;
-
-
-    }
-    */
+    
 }
