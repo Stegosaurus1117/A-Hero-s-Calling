@@ -5,6 +5,11 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     public int health = 100;
+    private float timer = 0f;
+    public float attackSpeed = 1f;
+
+    private bool CanBeAttacked = true;
+    private bool beingAttacked = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +19,16 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (beingAttacked)
+        {
+            CanBeAttacked = false;
+            timer += Time.deltaTime;
+        }
+        if(timer >= attackSpeed)
+        {
+            beingAttacked = false;
+            CanBeAttacked = true;
+        }
     }
 
     void KillThing()
@@ -30,6 +44,12 @@ public class Health : MonoBehaviour
         {
             KillThing();
         }
+
         Debug.Log(health);
+    }
+
+    void MakeTimer()
+    {
+
     }
 }

@@ -25,7 +25,7 @@ public class Attack2 : MonoBehaviour
     {
         //Debug.Log("Timer::" + timer + "   " + "DeltaTime::" + Time.deltaTime);
 
-        if (Input.GetKeyDown(KeyCode.Space) && canAttack)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && canAttack)
         {
             Attack();
         }
@@ -47,7 +47,7 @@ public class Attack2 : MonoBehaviour
     {
         if (enemyRef != null)
         {
-            enemyRef.Damage(2);
+            enemyRef.Damage(3);
         }
 
         attacking = true;
