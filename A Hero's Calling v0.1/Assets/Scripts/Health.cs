@@ -8,8 +8,9 @@ public class Health : MonoBehaviour
     private float timer = 0f;
     public float attackSpeed = 1f;
 
-    private bool CanBeAttacked = true;
+    private bool CanBeMelee = true;
     private bool beingAttacked = false;
+    private bool CanBeShot = 
     // Start is called before the first frame update
     void Start()
     {
@@ -21,14 +22,23 @@ public class Health : MonoBehaviour
     {
         if (beingAttacked)
         {
-            CanBeAttacked = false;
+            CanBeMelee = false;
             timer += Time.deltaTime;
+            
         }
         if(timer >= attackSpeed)
         {
             beingAttacked = false;
-            CanBeAttacked = true;
+            CanBeMelee = true;
+            timer = 0f;
+
         }
+
+        if (health <= 0)
+        {
+            KillThing();
+        }
+
     }
 
     void KillThing()
@@ -37,19 +47,33 @@ public class Health : MonoBehaviour
         Debug.Log("I am dead");
     }
 
-    public void Damage(int dmg)
+    public void MeleeDmg(int dmg)
     {
-        health -= dmg;
-        if (health <= 0)
+        if (CanBeMelee)
         {
-            KillThing();
+            beingAttacked = true;
+            health -= dmg;
+           
+
+            Debug.Log(health);
         }
-
-        Debug.Log(health);
+     
     }
-
-    void MakeTimer()
+    public void ProjDamage(int dmg)
     {
-
+        if(CanBeShot)
+        {
+            beingShot = true;
+            health -= dmg;
+            Debug.Log(health);
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+        if (collision.gameObject.tag == "Proj")
+        {
+            ProjDamage(5);
+        }
     }
 }

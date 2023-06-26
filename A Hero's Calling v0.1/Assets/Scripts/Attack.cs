@@ -49,7 +49,7 @@ public class Attack : MonoBehaviour
         LR.SetPositions(pos.ToArray());
         LR.useWorldSpace = true; */
 
-        if (Input.GetButtonDown("Fire1") && !isFired)
+        if (Input.GetButtonDown("Jump") && !isFired)
         {
             FireProjectile();
         }

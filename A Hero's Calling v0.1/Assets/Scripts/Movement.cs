@@ -49,6 +49,6 @@ public class Movement : MonoBehaviour
 
         playerVelocity = new Vector3(horizontal * movementSpeed, Vertical * movementSpeed, 0f);
 
-        transform.position += playerVelocity;
+        transform.position += playerVelocity * Time.deltaTime;
     }
 }

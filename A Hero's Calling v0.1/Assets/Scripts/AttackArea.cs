@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class AttackArea : MonoBehaviour
 {
+    public GameObject triggerObj;
+    private bool flipswitch;
+    
     // Start is called before the first frame update
     private int damage = 3;
     private Attack2 attack;
@@ -14,23 +17,32 @@ public class AttackArea : MonoBehaviour
         attack = GetComponentInParent<Attack2>();
         
     }
+    private void Update()
+    {
+        if (flipswitch)
+        {
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                Health healthScript = triggerObj.GetComponent<Health>();
+
+                healthScript.MeleeDmg(3);
+            }
+        }
+        if (!flipswitch)
+        {
+            triggerObj = null;
+
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        /*Health healthComp = collider.GetComponent<Health>();
-
-        if (healthComp != null)
-        {
-            attack.AttackTriggerEvent(healthComp);
-            attack.attacking = false;
-        }*/
+        triggerObj = collider.gameObject;
+        flipswitch = true;
     }
-
-    private void OnTriggerStay2D(Collider2D collider)
+    private void OnTriggerExit2D(Collider2D collider)
     {
-
-        Health healthScript = collider.GetComponent<Health>();
+        flipswitch = false;
         
-        healthScript.Damage(3);
-
     }
+
 }

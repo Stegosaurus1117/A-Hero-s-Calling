@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Attack2 : MonoBehaviour
 {
-    private GameObject attackArea = default;
+    /*private GameObject attackArea = default;
     public bool attacking = false;
     private bool canAttack = true;
 
@@ -25,12 +25,12 @@ public class Attack2 : MonoBehaviour
     {
         //Debug.Log("Timer::" + timer + "   " + "DeltaTime::" + Time.deltaTime);
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && canAttack)
-        {
-            Attack();
-        }
+        //if (Input.GetKeyDown(KeyCode.Mouse0) && canAttack)
+        //{
+        //    Attack();
+        //}
 
-        if (attacking)
+      /*  if (attacking)
         {
             timer += Time.deltaTime;
 
@@ -40,10 +40,10 @@ public class Attack2 : MonoBehaviour
                 canAttack = true;
                 //attackArea.SetActive(false);
             }
-        }
-    }
+        }*/
+    //}
 
-    private void Attack()
+   /* private void Attack()
     {
         if (enemyRef != null)
         {
@@ -52,11 +52,11 @@ public class Attack2 : MonoBehaviour
 
         attacking = true;
         canAttack = false;
-    }
+    }*/
 
-    public void AttackTriggerEvent(Health healthComp)
-    {
-        enemyRef = healthComp;
-    }
+    //public void AttackTriggerEvent(Health healthComp)
+    //{
+      //  enemyRef = healthComp;
+    //}
     
 }
