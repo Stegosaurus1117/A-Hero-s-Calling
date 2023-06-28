@@ -6,11 +6,14 @@ public class Health : MonoBehaviour
 {
     public int health = 100;
     private float timer = 0f;
+    private float projTimer = 0f;
     public float attackSpeed = 1f;
+    public float projCD = 3f;
 
     private bool CanBeMelee = true;
     private bool beingAttacked = false;
-    private bool CanBeShot = 
+    private bool beingShot = false;
+    private bool CanBeShot = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +26,15 @@ public class Health : MonoBehaviour
         if (beingAttacked)
         {
             CanBeMelee = false;
-            timer += Time.deltaTime;
+            timer += Time.deltaTime; 
+        }
+        if (beingShot)
+        {
+            projTimer += Time.deltaTime;
+        }
+        if(beingShot)
+        {
+            CanBeShot = false;
             
         }
         if(timer >= attackSpeed)
@@ -33,6 +44,13 @@ public class Health : MonoBehaviour
             timer = 0f;
 
         }
+        if(projTimer > projCD)
+        {
+            beingShot = false;
+            CanBeShot = true;
+            projTimer = 0f;
+        }
+        
 
         if (health <= 0)
         {
@@ -74,6 +92,10 @@ public class Health : MonoBehaviour
         if (collision.gameObject.tag == "Proj")
         {
             ProjDamage(5);
+        }
+        if(collision.gameObject.tag == "Expander")
+        {
+            MeleeDmg(10);
         }
     }
 }

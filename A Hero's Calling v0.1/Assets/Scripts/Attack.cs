@@ -6,6 +6,7 @@ public class Attack : MonoBehaviour
 {
     private GameObject cube;
     public GameObject Projectile;
+    public GameObject expander;
     private GameObject instProjectile;
     private LineRenderer LR;
 
@@ -38,18 +39,9 @@ public class Attack : MonoBehaviour
         Vector3 MousePos = Input.mousePosition;
         MousePos.z = Camera.main.nearClipPlane;
         WorldPosition = Camera.main.ScreenToWorldPoint(MousePos);
-       
-        /*LR = GetComponent<LineRenderer>();
+      
 
-        List<Vector3> pos = new List<Vector3>();
-        pos.Add(new Vector3(cube.transform.position.x, cube.transform.position.y));
-        pos.Add(new Vector3(WorldPosition.x, WorldPosition.y));
-        LR.startWidth = 0.5f;
-        LR.endWidth = 0.5f;
-        LR.SetPositions(pos.ToArray());
-        LR.useWorldSpace = true; */
-
-        if (Input.GetButtonDown("Jump") && !isFired)
+        if (Input.GetKeyDown(KeyCode.Mouse1) && !isFired)
         {
             FireProjectile();
         }
