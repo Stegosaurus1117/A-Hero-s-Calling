@@ -4,16 +4,33 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    public int health = 100;
-    private float timer = 0f;
+    public float health = 100;
+
+    private float meleeTimer = 0f;
     private float projTimer = 0f;
     public float attackSpeed = 1f;
     public float projCD = 3f;
+    public float meleedmg = 5f;
+    public float projdmg = 10f;
+    public float expandDmg = 15f;
+    private float expandTimer = 0f;
+    private float timeToExpand = 0.5f;
 
-    private bool CanBeMelee = true;
+    private bool isExpanding = false;
     private bool beingAttacked = false;
     private bool beingShot = false;
     private bool CanBeShot = true;
+    private bool CanBeMelee = true;
+    private bool CanExpand = true;
+    
+   
+
+    public enum EType : int
+    {
+        melee,
+        area,
+        proj
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +43,7 @@ public class Health : MonoBehaviour
         if (beingAttacked)
         {
             CanBeMelee = false;
-            timer += Time.deltaTime; 
+            meleeTimer += Time.deltaTime; 
         }
         if (beingShot)
         {
@@ -37,11 +54,11 @@ public class Health : MonoBehaviour
             CanBeShot = false;
             
         }
-        if(timer >= attackSpeed)
+        if(meleeTimer >= attackSpeed)
         {
             beingAttacked = false;
             CanBeMelee = true;
-            timer = 0f;
+            meleeTimer = 0f;
 
         }
         if(projTimer > projCD)
@@ -65,37 +82,56 @@ public class Health : MonoBehaviour
         Debug.Log("I am dead");
     }
 
-    public void MeleeDmg(int dmg)
-    {
-        if (CanBeMelee)
-        {
-            beingAttacked = true;
-            health -= dmg;
-           
-
-            Debug.Log(health);
-        }
-     
-    }
-    public void ProjDamage(int dmg)
-    {
-        if(CanBeShot)
-        {
-            beingShot = true;
-            health -= dmg;
-            Debug.Log(health);
-        }
-    }
+   
     private void OnTriggerEnter2D(Collider2D collision)
     {
         
         if (collision.gameObject.tag == "Proj")
         {
-            ProjDamage(5);
+            Attack(EType.proj);
         }
         if(collision.gameObject.tag == "Expander")
         {
-            MeleeDmg(10);
+            Attack(EType.area);
+        }
+    }
+    public void Attack(EType _type)
+    {
+        int x = (int)EType.melee;
+
+        switch (_type)
+        {
+            case EType.melee:
+
+                if (CanBeMelee)
+                {
+                    beingAttacked = true;
+                    health -= meleedmg;
+                    Debug.Log(health);
+                }
+
+                break;
+
+            case EType.proj:
+
+                if (CanBeShot)
+                {
+                    beingShot = true;
+                    health -= projdmg;
+                    Debug.Log(health);
+                }
+
+                break;
+
+            case EType.area:
+                if (CanExpand)
+                {
+                    isExpanding = true;
+                    health -= expandDmg;
+                    Debug.Log(health);
+                }
+
+                break;
         }
     }
 }

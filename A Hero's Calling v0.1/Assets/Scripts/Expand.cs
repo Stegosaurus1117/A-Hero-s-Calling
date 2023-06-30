@@ -11,8 +11,12 @@ public class Expand : MonoBehaviour
 
     private float expandTimer = 0f;
     private float timeToExpand = 0.5f;
-
+    private float ExpandCDTimer = 0f;
+    private float ExpandCD = 5f;
+    private bool startExpanding = false;
     private bool isExpanding;
+
+   
 
     // Start is called before the first frame update
     void Start()
@@ -23,19 +27,31 @@ public class Expand : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !isExpanding)
+        if (Input.GetKeyDown(KeyCode.Space) && !startExpanding)
         {
             Expander();
-                    }
+            ExpansionCD();
+            
+        }
         if (isExpanding)
         {
             currentExpander.transform.localScale += new Vector3(0.02f, 0.02f, 0);
             expandTimer += Time.deltaTime;
         }
+        if (startExpanding)
+        {
+            ExpandCDTimer += Time.deltaTime;
+        }
+        if(ExpandCDTimer >= ExpandCD)
+        {
+            startExpanding = false;
+            ExpandCDTimer = 0f;
+        }
         if(expandTimer >= timeToExpand)
         {
             StopExpansion();
         }
+        
        
     }
 
@@ -44,6 +60,16 @@ public class Expand : MonoBehaviour
         currentExpander = Instantiate(expander, transform);
         isExpanding = true;
         
+      
+    }
+
+    public void ExpansionCD()
+    {
+        if(!startExpanding)
+        {
+            startExpanding = true;
+        }
+       
     }
 
     private void StopExpansion()

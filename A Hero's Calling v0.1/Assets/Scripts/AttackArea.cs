@@ -25,7 +25,7 @@ public class AttackArea : MonoBehaviour
             {
                 Health healthScript = triggerObj.GetComponent<Health>();
 
-                healthScript.MeleeDmg(3);
+                healthScript.Attack(Health.EType.melee);
             }
         }
         if (!flipswitch)
@@ -37,24 +37,8 @@ public class AttackArea : MonoBehaviour
 
     
 
-    public enum EType : int { 
-        melee,
-        area,
-        range
-    }
-
-    public void Fire(EType _type)
-    {
-        int x = (int)EType.melee;
-
-        switch (_type)
-        {
-            case EType.melee:
-                break;
-            case EType.area:
-                break;
-        }
-    }
+ 
+ 
 
     private void OnTriggerEnter2D(Collider2D collider)
     {

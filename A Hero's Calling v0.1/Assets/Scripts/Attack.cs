@@ -10,6 +10,7 @@ public class Attack : MonoBehaviour
     private GameObject instProjectile;
     private LineRenderer LR;
 
+
     private bool isFired;
 
     public float projSpeed;
@@ -21,8 +22,7 @@ public class Attack : MonoBehaviour
 
     public Movement movement;
 
-    
-    
+  
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +39,7 @@ public class Attack : MonoBehaviour
         Vector3 MousePos = Input.mousePosition;
         MousePos.z = Camera.main.nearClipPlane;
         WorldPosition = Camera.main.ScreenToWorldPoint(MousePos);
-      
+        
 
         if (Input.GetKeyDown(KeyCode.Mouse1) && !isFired)
         {
@@ -82,5 +82,5 @@ public class Attack : MonoBehaviour
         Destroy(instProjectile);
         isFired = false;
     }
-
+  
 }
