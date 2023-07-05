@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class Expand : MonoBehaviour
 {
+    public float expanderSize = 50f;
     public GameObject expander;
+
     private GameObject currentExpander;
-
     private Vector3 originalScale;
-
     private float expandTimer = 0f;
     private float timeToExpand = 0.5f;
     private float ExpandCDTimer = 0f;
     private float ExpandCD = 5f;
     private bool startExpanding = false;
     private bool isExpanding;
+
+   
 
    
 
@@ -35,7 +37,7 @@ public class Expand : MonoBehaviour
         }
         if (isExpanding)
         {
-            currentExpander.transform.localScale += new Vector3(0.02f, 0.02f, 0);
+            currentExpander.transform.localScale += new Vector3(0.1f, 0.1f, 0) * expanderSize * Time.deltaTime ;
             expandTimer += Time.deltaTime;
         }
         if (startExpanding)

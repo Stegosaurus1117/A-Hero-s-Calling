@@ -7,16 +7,22 @@ public class Attack : MonoBehaviour
     private GameObject cube;
     public GameObject Projectile;
     public GameObject expander;
+    public GameObject mSlash;
+    private GameObject instSlash;
     private GameObject instProjectile;
+    
     private LineRenderer LR;
 
 
+
     private bool isFired;
+    private bool isAttacking;
 
     public float projSpeed;
 
     Vector3 WorldPosition;
     Vector3 projDestination;
+    Vector3 meleeDestination;
     Vector3 cubePos;
     Vector3 mousePos; 
 
@@ -40,7 +46,10 @@ public class Attack : MonoBehaviour
         MousePos.z = Camera.main.nearClipPlane;
         WorldPosition = Camera.main.ScreenToWorldPoint(MousePos);
         
-
+        if(Input.GetKeyDown(KeyCode.Mouse0) && !isAttacking)
+        {
+            DoAttack();
+        }
         if (Input.GetKeyDown(KeyCode.Mouse1) && !isFired)
         {
             FireProjectile();
@@ -67,6 +76,21 @@ public class Attack : MonoBehaviour
         Invoke("DestroyProjectile", 3f);
     }
 
+    void DoAttack()
+    {
+        Vector3 MousePos = Input.mousePosition;
+        mousePos.z = 0f;
+
+        WorldPosition = Camera.main.ScreenToWorldPoint(mousePos);
+        meleeDestination = WorldPosition;
+        cubePos = transform.position;
+        mousePos = WorldPosition;
+
+        instSlash = Instantiate(mSlash, transform.position, transform.rotation);
+
+
+        
+    }
     void MoveProjectile()
     {
         if (!isFired) return;
@@ -83,4 +107,5 @@ public class Attack : MonoBehaviour
         isFired = false;
     }
   
+    
 }
