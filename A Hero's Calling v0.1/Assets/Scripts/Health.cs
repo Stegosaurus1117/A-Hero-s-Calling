@@ -94,6 +94,10 @@ public class Health : MonoBehaviour
         {
             Attack(EType.area);
         }
+        if(collision.gameObject.tag == "Melee")
+        {
+            Attack(EType.melee);
+        }
     }
     public void Attack(EType _type)
     {

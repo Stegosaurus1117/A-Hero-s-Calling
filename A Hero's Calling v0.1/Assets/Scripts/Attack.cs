@@ -19,12 +19,14 @@ public class Attack : MonoBehaviour
     private bool isAttacking;
 
     public float projSpeed;
+    public float slashSpeed;
 
     Vector3 WorldPosition;
     Vector3 projDestination;
     Vector3 meleeDestination;
     Vector3 cubePos;
-    Vector3 mousePos; 
+    Vector3 mousePos;
+    Vector3 attackmousePos;
 
     public Movement movement;
 
@@ -54,8 +56,10 @@ public class Attack : MonoBehaviour
         {
             FireProjectile();
         }
+       
 
         MoveProjectile();
+        MoveAttack();
     }
 
     void FireProjectile()
@@ -70,7 +74,7 @@ public class Attack : MonoBehaviour
         cubePos = transform.position;
         mousePos = WorldPosition;
 
-        instProjectile = Instantiate(Projectile, transform.position, Quaternion.identity);
+        instProjectile = Instantiate(Projectile, transform.position, transform.rotation);
 
         isFired = true;
         Invoke("DestroyProjectile", 3f);
@@ -78,24 +82,38 @@ public class Attack : MonoBehaviour
 
     void DoAttack()
     {
+        
         Vector3 MousePos = Input.mousePosition;
         mousePos.z = 0f;
 
-        WorldPosition = Camera.main.ScreenToWorldPoint(mousePos);
+        WorldPosition = Camera.main.ScreenToWorldPoint(MousePos);
         meleeDestination = WorldPosition;
         cubePos = transform.position;
-        mousePos = WorldPosition;
+        attackmousePos = WorldPosition;
 
         instSlash = Instantiate(mSlash, transform.position, transform.rotation);
 
+        isAttacking = true;
+        Invoke("ResetAttack", 0.2f);
+
 
         
+    }
+    void MoveAttack()
+    {
+        if (!isAttacking) return;
+
+        Vector3 attackDirection = (attackmousePos - cubePos);
+        attackDirection.z = 0f;
+
+        instSlash.transform.position += attackDirection.normalized * slashSpeed * Time.deltaTime;
+
     }
     void MoveProjectile()
     {
         if (!isFired) return;
 
-        Vector3 projDirection = (mousePos - cubePos); ;
+        Vector3 projDirection = (mousePos - cubePos);
         projDirection.z = 0f;
 
         instProjectile.transform.position += projDirection.normalized * projSpeed * Time.deltaTime; //+ movement.playerVelocity;
@@ -105,6 +123,12 @@ public class Attack : MonoBehaviour
     {
         Destroy(instProjectile);
         isFired = false;
+    }
+
+    void ResetAttack()
+    {
+        Destroy(instSlash);
+        isAttacking = false;
     }
   
     
