@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackArea : MonoBehaviour
+/*public class AttackArea : MonoBehaviour
 {
     public GameObject triggerObj;
     private bool flipswitch;
@@ -25,7 +25,7 @@ public class AttackArea : MonoBehaviour
             {
                 Health healthScript = triggerObj.GetComponent<Health>();
 
-                healthScript.Attack(Health.EType.melee);
+                healthScript.Attack(EType.melee);
             }
         }
         if (!flipswitch)
@@ -34,7 +34,7 @@ public class AttackArea : MonoBehaviour
 
         }
     }
-
+    
     
 
  
@@ -52,3 +52,4 @@ public class AttackArea : MonoBehaviour
     }
 
 }
+*/

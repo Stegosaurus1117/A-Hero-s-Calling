@@ -234,7 +234,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &214169314
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -276,9 +276,6 @@ MonoBehaviour:
   health: 50
   attackSpeed: 1
   projCD: 3
-  meleedmg: 5
-  projdmg: 10
-  expandDmg: 15
 --- !u!23 &214169316
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -507,6 +504,7 @@ GameObject:
   - component: {fileID: 641778647}
   - component: {fileID: 641778652}
   - component: {fileID: 641778653}
+  - component: {fileID: 641778654}
   m_Layer: 0
   m_Name: Cube (5)
   m_TagString: Untagged
@@ -553,11 +551,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
-  attackSpeed: 1
+  attackSpeed: 0.2
   projCD: 3
-  meleedmg: 5
-  projdmg: 10
-  expandDmg: 15
 --- !u!23 &641778649
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -653,6 +648,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpeed: 2
+--- !u!114 &641778654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 641778646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cde6cd90b9867864abd7b3a79466ce7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  defense: 0
+  meleeDmg: 5
+  projDmg: 10
+  expandDmg: 15
 --- !u!1 &1058285756
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,7 +686,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1058285757
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -716,9 +728,6 @@ MonoBehaviour:
   health: 50
   attackSpeed: 1
   projCD: 3
-  meleedmg: 5
-  projdmg: 10
-  expandDmg: 15
 --- !u!23 &1058285759
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -831,13 +840,31 @@ GameObject:
   - component: {fileID: 1398385061}
   - component: {fileID: 1398385065}
   - component: {fileID: 1398385062}
+  - component: {fileID: 1398385056}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1398385056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398385055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cde6cd90b9867864abd7b3a79466ce7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  defense: 0
+  meleeDmg: 5
+  projDmg: 10
+  expandDmg: 15
 --- !u!23 &1398385057
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -911,7 +938,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fd36b514333d494b95ced8e6c530fa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 3
+  movementSpeed: 5
   playerVelocity: {x: 0, y: 0, z: 0}
 --- !u!61 &1398385061
 BoxCollider2D:
@@ -1028,7 +1055,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1423541631
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1070,9 +1097,6 @@ MonoBehaviour:
   health: 50
   attackSpeed: 1
   projCD: 3
-  meleedmg: 5
-  projdmg: 10
-  expandDmg: 15
 --- !u!23 &1423541633
 MeshRenderer:
   m_ObjectHideFlags: 0

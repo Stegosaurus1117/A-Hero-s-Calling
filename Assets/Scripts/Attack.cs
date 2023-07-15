@@ -92,6 +92,7 @@ public class Attack : MonoBehaviour
         attackmousePos = WorldPosition;
 
         instSlash = Instantiate(mSlash, transform.position, transform.rotation);
+        instSlash.GetComponent<ProjectileBase>().damageValue = 5; 
 
         isAttacking = true;
         Invoke("ResetAttack", 0.2f);

@@ -1,19 +1,18 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    //get damageValue component from projectile base script to do damage to enemy
     public float health = 100;
 
     private float meleeTimer = 0f;
     private float projTimer = 0f;
-    public float attackSpeed = 1f;
-    public float projCD = 3f;
-    public float meleedmg = 5f;
-    public float projdmg = 10f;
-    public float expandDmg = 15f;
     private float expandTimer = 0f;
+    public float attackSpeed = 0.2f;
+    public float projCD = 3f;
     private float timeToExpand = 0.5f;
 
     private bool isExpanding = false;
@@ -22,15 +21,11 @@ public class Health : MonoBehaviour
     private bool CanBeShot = true;
     private bool CanBeMelee = true;
     private bool CanExpand = true;
-    
-   
 
-    public enum EType : int
-    {
-        melee,
-        area,
-        proj
-    }
+    private float cooldownTime = 0.5f;
+    private float currentTime;
+    private bool canBeDamaged = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,34 +44,47 @@ public class Health : MonoBehaviour
         {
             projTimer += Time.deltaTime;
         }
-        if(beingShot)
+        if (beingShot)
         {
             CanBeShot = false;
             
         }
-        if(meleeTimer >= attackSpeed)
+        if (meleeTimer >= attackSpeed)
         {
             beingAttacked = false;
             CanBeMelee = true;
             meleeTimer = 0f;
 
         }
-        if(projTimer > projCD)
+        if (projTimer > projCD)
         {
             beingShot = false;
             CanBeShot = true;
             projTimer = 0f;
         }
-        
+
+        IFrame();
 
         if (health <= 0)
         {
-            KillThing();
+            KillSelf();
         }
-
     }
 
-    void KillThing()
+    void IFrame()
+    {
+        if (!canBeDamaged)
+        {
+            currentTime -= Time.deltaTime;
+
+            if (currentTime <= 0f)
+            {
+                canBeDamaged = true;
+            }
+        }
+    }
+
+    void KillSelf()
     {
         Destroy(gameObject);
         Debug.Log("I am dead");
@@ -85,56 +93,48 @@ public class Health : MonoBehaviour
    
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        ProjectileBase objScript = collision.GetComponent<ProjectileBase>();
         
-        if (collision.gameObject.tag == "Proj")
+        
+        if (objScript != null)
         {
-            Attack(EType.proj);
-        }
-        if(collision.gameObject.tag == "Expander")
-        {
-            Attack(EType.area);
-        }
-        if(collision.gameObject.tag == "Melee")
-        {
-            Attack(EType.melee);
+            EType CType = objScript.attackType;
+            Attack(CType);
         }
     }
     public void Attack(EType _type)
     {
-        int x = (int)EType.melee;
+        void CalculateDamage(float damageValue)
+        {
+            if (canBeDamaged)
+            {
+                currentTime = cooldownTime;
+                health -= damageValue;
+                canBeDamaged = false;
+                Debug.Log(health);
+            }
+        }
 
+        /*
+        Action<float> DoStuff  = (float test) => {
+            currentTime = cooldownTime;
+            health -= test;
+            Debug.Log(health);
+        };
+        */
+        
         switch (_type)
         {
             case EType.melee:
-
-                if (CanBeMelee)
-                {
-                    beingAttacked = true;
-                    health -= meleedmg;
-                    Debug.Log(health);
-                }
-
+                CalculateDamage(statScript.meleeDmg);
                 break;
 
-            case EType.proj:
-
-                if (CanBeShot)
-                {
-                    beingShot = true;
-                    health -= projdmg;
-                    Debug.Log(health);
-                }
-
+            case EType.projectile:
+                CalculateDamage(statScript.projDmg);
                 break;
 
             case EType.area:
-                if (CanExpand)
-                {
-                    isExpanding = true;
-                    health -= expandDmg;
-                    Debug.Log(health);
-                }
-
+                CalculateDamage(statScript.expandDmg);
                 break;
         }
     }
