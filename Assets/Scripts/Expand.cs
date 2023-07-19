@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//move instantiating code to attack and expand, melee, proj, to their respective prefabs.
 
 public class Expand : MonoBehaviour
 {
@@ -16,14 +17,15 @@ public class Expand : MonoBehaviour
     private bool startExpanding = false;
     private bool isExpanding;
 
-   
+    Stats StatScript;
 
-   
 
     // Start is called before the first frame update
     void Start()
     {
+        StatScript = GetComponent<Stats>();
         originalScale = expander.transform.localScale;
+
     }
 
     // Update is called once per frame
@@ -60,9 +62,8 @@ public class Expand : MonoBehaviour
     public void Expander()
     {
         currentExpander = Instantiate(expander, transform);
+        currentExpander.GetComponent<ProjectileBase>().damageValue = StatScript.expandDmg;
         isExpanding = true;
-        
-      
     }
 
     public void ExpansionCD()

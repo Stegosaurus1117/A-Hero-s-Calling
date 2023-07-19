@@ -20,6 +20,7 @@ public class Attack : MonoBehaviour
 
     public float projSpeed;
     public float slashSpeed;
+    
 
     Vector3 WorldPosition;
     Vector3 projDestination;
@@ -29,16 +30,16 @@ public class Attack : MonoBehaviour
     Vector3 attackmousePos;
 
     public Movement movement;
+    Stats StatScript;
 
   
     // Start is called before the first frame update
     void Start()
     {
+        StatScript = GetComponent<Stats>();
         cube = GameObject.Find("Cube");
 
         isFired = false;
-        
-       
     }
 
     // Update is called once per frame
@@ -75,6 +76,8 @@ public class Attack : MonoBehaviour
         mousePos = WorldPosition;
 
         instProjectile = Instantiate(Projectile, transform.position, transform.rotation);
+        ProjectileBase script = instProjectile.GetComponent<ProjectileBase>();
+        script.damageValue = StatScript.projDmg;
 
         isFired = true;
         Invoke("DestroyProjectile", 3f);
@@ -92,14 +95,12 @@ public class Attack : MonoBehaviour
         attackmousePos = WorldPosition;
 
         instSlash = Instantiate(mSlash, transform.position, transform.rotation);
-        instSlash.GetComponent<ProjectileBase>().damageValue = 5; 
+        instSlash.GetComponent<ProjectileBase>().damageValue = StatScript.meleeDmg; 
 
         isAttacking = true;
         Invoke("ResetAttack", 0.2f);
-
-
-        
     }
+
     void MoveAttack()
     {
         if (!isAttacking) return;
@@ -117,7 +118,7 @@ public class Attack : MonoBehaviour
         Vector3 projDirection = (mousePos - cubePos);
         projDirection.z = 0f;
 
-        instProjectile.transform.position += projDirection.normalized * projSpeed * Time.deltaTime; //+ movement.playerVelocity;
+        instProjectile.transform.position += projDirection.normalized * projSpeed * Time.deltaTime;
     }
 
     void DestroyProjectile()

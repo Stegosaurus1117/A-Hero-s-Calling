@@ -112,3 +112,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackType: 3
+  damageValue: 10

@@ -141,3 +141,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackType: 1
+  damageValue: 5

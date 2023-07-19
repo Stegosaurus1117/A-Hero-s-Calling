@@ -7,7 +7,8 @@ public class Health : MonoBehaviour
 {
     //get damageValue component from projectile base script to do damage to enemy
     public float health = 100;
-
+    
+    /*
     private float meleeTimer = 0f;
     private float projTimer = 0f;
     private float expandTimer = 0f;
@@ -21,10 +22,14 @@ public class Health : MonoBehaviour
     private bool CanBeShot = true;
     private bool CanBeMelee = true;
     private bool CanExpand = true;
+    */
 
-    private float cooldownTime = 0.5f;
+    private float cooldownTime = 0.2f;
     private float currentTime;
     private bool canBeDamaged = true;
+
+
+    
 
     // Start is called before the first frame update
     void Start()
@@ -35,32 +40,36 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (beingAttacked)
         {
-            CanBeMelee = false;
-            meleeTimer += Time.deltaTime; 
-        }
-        if (beingShot)
-        {
-            projTimer += Time.deltaTime;
-        }
-        if (beingShot)
-        {
-            CanBeShot = false;
+        /*
+            if (beingAttacked)
+            {
+                CanBeMelee = false;
+                meleeTimer += Time.deltaTime; 
+            }
+            if (beingShot)
+            {
+                projTimer += Time.deltaTime;
+            }
+            if (beingShot)
+            {
+                CanBeShot = false;
             
-        }
-        if (meleeTimer >= attackSpeed)
-        {
-            beingAttacked = false;
-            CanBeMelee = true;
-            meleeTimer = 0f;
+            }
+            if (meleeTimer >= attackSpeed)
+            {
+                beingAttacked = false;
+                CanBeMelee = true;
+                meleeTimer = 0f;
 
-        }
-        if (projTimer > projCD)
-        {
-            beingShot = false;
-            CanBeShot = true;
-            projTimer = 0f;
+            }
+            if (projTimer > projCD)
+            {
+                beingShot = false;
+                CanBeShot = true;
+                projTimer = 0f;
+            }
+        */
         }
 
         IFrame();
@@ -99,10 +108,10 @@ public class Health : MonoBehaviour
         if (objScript != null)
         {
             EType CType = objScript.attackType;
-            Attack(CType);
+            Attack(objScript);
         }
     }
-    public void Attack(EType _type)
+    public void Attack(ProjectileBase PB)
     {
         void CalculateDamage(float damageValue)
         {
@@ -123,18 +132,19 @@ public class Health : MonoBehaviour
         };
         */
         
-        switch (_type)
+        switch (PB.attackType)
+            
         {
             case EType.melee:
-                CalculateDamage(statScript.meleeDmg);
+                CalculateDamage(PB.damageValue);
                 break;
 
             case EType.projectile:
-                CalculateDamage(statScript.projDmg);
+                CalculateDamage(PB.damageValue);
                 break;
 
             case EType.area:
-                CalculateDamage(statScript.expandDmg);
+                CalculateDamage(PB.damageValue);
                 break;
         }
     }
