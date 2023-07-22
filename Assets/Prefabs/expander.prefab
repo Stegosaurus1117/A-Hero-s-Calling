@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7154820573955658819}
   - component: {fileID: 1524725542625488623}
   - component: {fileID: 7944958408616079418}
-  - component: {fileID: -8273519897169767011}
   - component: {fileID: 2107276811623569644}
   m_Layer: 0
   m_Name: expander
@@ -72,20 +71,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-8273519897169767011
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1211939925294237160}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78fe34a8f425f384aa70fe4c0e0591d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackType: 2
-  damageValue: 15
 --- !u!114 &2107276811623569644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,7 +83,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b348792c27f03440b137a1b94324a2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expanderSize: 50
+  attackType: 2
+  damageValue: 15
+  moveSpeed: 5
+  expanderSize: 120
   expander: {fileID: 1211939925294237160}
 --- !u!1 &6864401169018834338
 GameObject:

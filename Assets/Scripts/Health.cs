@@ -104,24 +104,20 @@ public class Health : MonoBehaviour
     {
         ProjectileBase objScript = collision.GetComponent<ProjectileBase>();
         
-        
         if (objScript != null)
         {
-            EType CType = objScript.attackType;
             Attack(objScript);
         }
     }
     public void Attack(ProjectileBase PB)
     {
-        void CalculateDamage(float damageValue)
+        
+        if (canBeDamaged)
         {
-            if (canBeDamaged)
-            {
-                currentTime = cooldownTime;
-                health -= damageValue;
-                canBeDamaged = false;
-                Debug.Log(health);
-            }
+            currentTime = cooldownTime;
+            health -= PB.damageValue;
+            canBeDamaged = false;
+            Debug.Log(health);
         }
 
         /*
@@ -131,21 +127,6 @@ public class Health : MonoBehaviour
             Debug.Log(health);
         };
         */
-        
-        switch (PB.attackType)
-            
-        {
-            case EType.melee:
-                CalculateDamage(PB.damageValue);
-                break;
-
-            case EType.projectile:
-                CalculateDamage(PB.damageValue);
-                break;
-
-            case EType.area:
-                CalculateDamage(PB.damageValue);
-                break;
-        }
+        //Debug.Log(PB.damageValue);
     }
 }
