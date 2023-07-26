@@ -140,8 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76a103696eab8f848aad684eedc9a081, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackType: 0
-  damageValue: 0
-  mSlash: {fileID: 0}
-  slashSpeed: 0
+  attackType: 1
+  damageValue: 5
+  moveSpeed: 0
   movement: {fileID: 0}

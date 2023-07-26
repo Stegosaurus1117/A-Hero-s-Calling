@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour   
 {
-    private GameObject cube;
+    private GameObject player;
     public GameObject Projectile;
     public GameObject expander;
     public GameObject mSlash;
@@ -43,7 +43,7 @@ public class Attack : MonoBehaviour
     void Start()
     {
         StatScript = GetComponent<Stats>();
-        cube = GameObject.Find("Cube");
+        player = GameObject.Find("Player");
 
         isFired = false;
         isAttacking = false;
@@ -69,9 +69,7 @@ public class Attack : MonoBehaviour
         {
             canExpand = false;
             DoAttack(EType.area);
-            
         }
-
 
         MoveProjectile();
         MoveAttack();
@@ -112,7 +110,7 @@ public class Attack : MonoBehaviour
         {
             case EType.melee:
                 //Ability side setup
-                instSlash = Instantiate(mSlash, transform.position, transform.rotation);
+                instSlash = Instantiate(mSlash, transform.position, transform.rotation, player.transform);
                 instSlash.GetComponent<Melee>().SetDefault(StatScript.meleeDmg, 0.2f, slashSpeed);
                 
                 //Player side setup, attack rate
@@ -122,9 +120,12 @@ public class Attack : MonoBehaviour
             case EType.projectile:
                 instProjectile = Instantiate(Projectile, transform.position, transform.rotation);
                 instProjectile.GetComponent<Projectile>().SetDefault(StatScript.projDmg, 3f, projSpeed);
+                
                 break;
             case EType.area:
-                instExpander = Instantiate(expander, transform.position, transform.rotation);
+                Debug.Log("DOStuff");
+                instExpander = Instantiate(expander, transform.position, transform.rotation, player.transform);
+                    
                 instExpander.GetComponent<Expand>().SetDefault(StatScript.expandDmg, 0.5f, expandCD);
                 Invoke("ResetExpand", 5f);
                 break;

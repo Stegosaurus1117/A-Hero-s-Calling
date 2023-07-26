@@ -7,7 +7,7 @@ public class Expand : ProjectileBase
 {
     public float expanderSize = 50f;
 
-    private GameObject currentExpander;
+
     private Vector3 originalScale;
     private float expandTimer = 0f;
     private float timeToExpand = 0.5f;
@@ -29,8 +29,8 @@ public class Expand : ProjectileBase
     // Update is called once per frame
     void Update()
     {
-            Expander();
-            currentExpander.transform.localScale += new Vector3(0.1f, 0.1f, 0) * expanderSize * Time.deltaTime ;
+            
+            transform.localScale += new Vector3(0.1f, 0.1f, 0) * expanderSize * Time.deltaTime ;
             expandTimer += Time.deltaTime;
 
        /* if (startExpanding)
@@ -57,8 +57,6 @@ public class Expand : ProjectileBase
 
     public void Expander()
     {
-        currentExpander = Instantiate(gameObject, transform);
-
         isExpanding = true;
     }
 
@@ -75,7 +73,7 @@ public class Expand : ProjectileBase
     {
         isExpanding = false;
         expandTimer = 0f;
-        currentExpander.transform.localScale = originalScale;
+        transform.localScale = originalScale;
        
     }
 

@@ -87,7 +87,6 @@ MonoBehaviour:
   damageValue: 15
   moveSpeed: 5
   expanderSize: 120
-  expander: {fileID: 1211939925294237160}
 --- !u!1 &6864401169018834338
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,8 +6,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     //get damageValue component from projectile base script to do damage to enemy
-    public float health = 100;
-    
+    [HideInInspector] public float health = 100;
     /*
     private float meleeTimer = 0f;
     private float projTimer = 0f;
