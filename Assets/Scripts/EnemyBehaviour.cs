@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour 
 {
+
     GameObject player;
+
     public float enemySpeed;
+    public float chaseDistance;
 
     float distance;
+
+    Vector3 directionOffset;
     Vector3 direction;
     Vector3 randomOffSet;
 
@@ -21,23 +26,23 @@ public class EnemyBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        distance = Vector3.Distance(transform.position, player.transform.position);
-        if (distance > 2f)
+        if(player != null)
         {
-            direction = player.transform.position - transform.position;
-            transform.position += direction.normalized * Time.deltaTime * enemySpeed + randomOffSet;
+            distance = Vector3.Distance(transform.position, player.transform.position);
+            if (distance > chaseDistance && player != null)
+            {
+                direction = player.transform.position - transform.position + directionOffset;
+                transform.position += direction.normalized * Time.deltaTime * enemySpeed + randomOffSet;
+            }
         }
-        else
-        {
-          
-        }
+
+        RandomizeMovement();
     }
 
+    
+ 
    void RandomizeMovement()
     {
-        randomOffSet.x = Random.Range(-0.5f, 0.5f);
-        randomOffSet.y = Random.Range(-0.5f, 0.5f);
-        randomOffSet.z = 0;
+        directionOffset = new Vector3(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f), 0);
     }
 }

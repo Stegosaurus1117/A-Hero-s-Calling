@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Expand : ProjectileBase
 {
-    public float expanderSize = 50f;
+    public float expanderSize = 100f;
 
 
     private Vector3 originalScale;
@@ -30,7 +30,7 @@ public class Expand : ProjectileBase
     void Update()
     {
             
-            transform.localScale += new Vector3(0.1f, 0.1f, 0) * expanderSize * Time.deltaTime ;
+            transform.localScale += new Vector3(0.2f, 0.2f, 0) * expanderSize * Time.deltaTime ;
             expandTimer += Time.deltaTime;
 
        /* if (startExpanding)

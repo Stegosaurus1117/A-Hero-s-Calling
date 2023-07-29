@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//what left
+//1-Enemy attack & spawn
+//2-Player Classes
+//3-Upgrades
+//4-UI
 public class Attack : MonoBehaviour   
 {
     private GameObject player;
@@ -20,7 +25,8 @@ public class Attack : MonoBehaviour
     private bool isAttacking;
     private bool canExpand;
 
-
+    private float meleeRate;
+    private float projectileRate;
 
     public float projSpeed;
     public float slashSpeed;
@@ -48,6 +54,10 @@ public class Attack : MonoBehaviour
         isFired = false;
         isAttacking = false;
         canExpand = true;
+
+        meleeRate = 0.2f;
+        projectileRate = 0.2f;
+
     }
 
     // Update is called once per frame
@@ -71,8 +81,8 @@ public class Attack : MonoBehaviour
             DoAttack(EType.area);
         }
 
-        MoveProjectile();
-        MoveAttack();
+       /* MoveProjectile();
+        MoveAttack();*/
     }
 
     void FireProjectile()
@@ -115,15 +125,17 @@ public class Attack : MonoBehaviour
                 
                 //Player side setup, attack rate
                 isAttacking = true;
-                Invoke("ResetAttack", 0.2f);
+                Invoke("ResetAttack", meleeRate);
                 break;
             case EType.projectile:
                 instProjectile = Instantiate(Projectile, transform.position, transform.rotation);
                 instProjectile.GetComponent<Projectile>().SetDefault(StatScript.projDmg, 3f, projSpeed);
-                
+
+                isFired = true;
+                Invoke("ResetProjectile", projectileRate);
                 break;
             case EType.area:
-                Debug.Log("DOStuff");
+                
                 instExpander = Instantiate(expander, transform.position, transform.rotation, player.transform);
                     
                 instExpander.GetComponent<Expand>().SetDefault(StatScript.expandDmg, 0.5f, expandCD);
@@ -132,7 +144,7 @@ public class Attack : MonoBehaviour
         }
     }
 
-    void MoveAttack()
+   /* void MoveAttack()
     {
         if (!isAttacking) return;
 
@@ -149,19 +161,21 @@ public class Attack : MonoBehaviour
         Vector3 projDirection = (mousePos - playerPos);
         projDirection.z = 0f;
 
-        instProjectile.transform.position += projDirection.normalized * projSpeed * Time.deltaTime;
-    }
-
-    void DestroyProjectile()
-    {
-        Destroy(instProjectile);
-        isFired = false;
-    }
+        if (instProjectile != null)
+        {
+            instProjectile.transform.position += projDirection.normalized * projSpeed * Time.deltaTime;
+        }
+       
+    }*/
 
     void ResetAttack()
     {
-        Destroy(instSlash);
         isAttacking = false;
+    }
+
+    void ResetProjectile()
+    {
+        isFired = false;
     }
 
     void ResetExpand()

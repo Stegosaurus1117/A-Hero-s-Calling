@@ -2,11 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
     //get damageValue component from projectile base script to do damage to enemy
-    [HideInInspector] public float health = 100;
+    public float health = 100;
     /*
     private float meleeTimer = 0f;
     private float projTimer = 0f;
@@ -23,7 +24,7 @@ public class Health : MonoBehaviour
     private bool CanExpand = true;
     */
 
-    private float cooldownTime = 0.2f;
+    private float cooldownTime = 0.15f;
     private float currentTime;
     private bool canBeDamaged = true;
 
@@ -33,7 +34,7 @@ public class Health : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+ 
     }
 
     // Update is called once per frame
@@ -116,7 +117,7 @@ public class Health : MonoBehaviour
             currentTime = cooldownTime;
             health -= PB.damageValue;
             canBeDamaged = false;
-            Debug.Log(health);
+            
         }
 
         /*

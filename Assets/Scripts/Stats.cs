@@ -18,8 +18,23 @@ public class Stats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (health <= 0)
+        {
+            KillSelf();
+        }
+    }
+    
+    void KillSelf()
+    {
+        Destroy(gameObject);
     }
 
- 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            health -= 10;
+            Debug.Log(health);
+        }
+    }
 }

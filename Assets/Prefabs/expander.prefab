@@ -84,7 +84,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackType: 2
-  damageValue: 15
+  damageValue: 50
   moveSpeed: 5
   expanderSize: 120
 --- !u!1 &6864401169018834338
