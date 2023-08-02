@@ -17,6 +17,8 @@ public class EnemyBehaviour : MonoBehaviour
     Vector3 randomOffSet;
 
     bool isattacking;
+
+
     // Start is called before the first frame update
     void Start()
     {

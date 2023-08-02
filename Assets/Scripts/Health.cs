@@ -29,12 +29,9 @@ public class Health : MonoBehaviour
     private bool canBeDamaged = true;
 
 
-    
-
     // Start is called before the first frame update
     void Start()
     {
- 
     }
 
     // Update is called once per frame
@@ -77,6 +74,7 @@ public class Health : MonoBehaviour
         if (health <= 0)
         {
             KillSelf();
+            
         }
     }
 
@@ -97,6 +95,7 @@ public class Health : MonoBehaviour
     {
         Destroy(gameObject);
         Debug.Log("I am dead");
+        Score.score += 534;
     }
 
    

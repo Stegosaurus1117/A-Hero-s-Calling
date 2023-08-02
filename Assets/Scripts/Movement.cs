@@ -4,19 +4,24 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public float movementSpeed;
+    
+    private float movementSpeed;
+
     public Vector3 playerVelocity;
     private Vector3 mousePos;
+
+    private Stats statScript;
 
     // Start is called before the first frame update
     void Start()
     {
-       
+        statScript = GetComponent<Stats>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        movementSpeed = statScript.movementSpeed;
     }
 
     private void FixedUpdate()
