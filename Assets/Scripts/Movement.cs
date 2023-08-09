@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    
+    private Rigidbody2D rb;
+
     private float movementSpeed;
 
     public Vector3 playerVelocity;
@@ -16,6 +17,7 @@ public class Movement : MonoBehaviour
     void Start()
     {
         statScript = GetComponent<Stats>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -54,6 +56,7 @@ public class Movement : MonoBehaviour
 
         playerVelocity = new Vector3(horizontal * movementSpeed, Vertical * movementSpeed, 0f);
 
-        transform.position += playerVelocity * Time.deltaTime;
+        //transform.position += playerVelocity * Time.deltaTime;
+        rb.velocity = playerVelocity.normalized * movementSpeed;
     }
 }

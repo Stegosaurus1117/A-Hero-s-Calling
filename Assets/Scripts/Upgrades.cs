@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+
 public class Upgrades : MonoBehaviour
 {
     public Stats statScript;
@@ -11,26 +12,30 @@ public class Upgrades : MonoBehaviour
     public TextMeshProUGUI SUT;
 
     private int speedInt;
+    private int DisplaySpeedInt;
 
     
     
     // Start is called before the first frame update
     void Start()
     {
-        speedInt = 1;
+        speedInt = 5;
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        SUT.text = "Speed: " + speedInt;
+        DisplaySpeedInt = speedInt - 5;
+
+        SUT.text = "Speed: " + DisplaySpeedInt;
+        statScript.movementSpeed = speedInt / 5;
+
     }
 
     public void upgradeSpeed()
     {
         speedInt++;
-        
-        
+
     }
 }
