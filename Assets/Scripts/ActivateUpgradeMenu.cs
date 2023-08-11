@@ -3,37 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PauseScript : MonoBehaviour
+public class ActivateUpgradeMenu : MonoBehaviour
 {
-    private GameObject pauseMenu;
+    private GameObject upgradeMenu;
     private GameObject Panel;
-
     // Start is called before the first frame update
     void Start()
     {
-        pauseMenu = GameObject.Find("Pause Menu");
+        upgradeMenu = GameObject.Find("UpgradeMenu");
         Panel = GameObject.Find("Panel");
-        pauseMenu.SetActive(false);
+        upgradeMenu.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            ActivatePauseMenu();
-        }
+        
     }
 
-    public void ActivatePauseMenu()
+    public void AppearUpgradeMenu()
     {
-        pauseMenu.SetActive(!pauseMenu.activeSelf);
+        upgradeMenu.SetActive(!upgradeMenu.activeSelf);
 
         Color col = Color.black;
 
-        if (pauseMenu.activeSelf)
+        if (upgradeMenu.activeSelf)
         {
-            col = new Color(0f, 0f, 0f, 0.7f);
+            col = new Color(50f, 50f, 50f, 0.8f);
             Time.timeScale = 0;
         }
         else

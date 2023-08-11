@@ -13,18 +13,23 @@ public class Movement : MonoBehaviour
 
     private Stats statScript;
 
+    GameObject pausemenu;
+
     // Start is called before the first frame update
     void Start()
     {
         statScript = GetComponent<Stats>();
         rb = GetComponent<Rigidbody2D>();
+        pausemenu = GameObject.Find("Pause Menu");
     }
 
     // Update is called once per frame
     void Update()
     {
         movementSpeed = statScript.movementSpeed;
-    }
+
+        
+   }
 
     private void FixedUpdate()
     {

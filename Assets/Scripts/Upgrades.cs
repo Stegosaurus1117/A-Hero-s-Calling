@@ -10,8 +10,10 @@ public class Upgrades : MonoBehaviour
     public Stats statScript;
 
     public TextMeshProUGUI SUT;
+    public TextMeshProUGUI HUT;
 
     private int speedInt;
+    private int healthInt;
     private int DisplaySpeedInt;
 
     
@@ -19,6 +21,7 @@ public class Upgrades : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        healthInt = 0;
         speedInt = 5;
         
     }
@@ -28,8 +31,11 @@ public class Upgrades : MonoBehaviour
     {
         DisplaySpeedInt = speedInt - 5;
 
+        HUT.text = "Health: " + healthInt;
         SUT.text = "Speed: " + DisplaySpeedInt;
+
         statScript.movementSpeed = speedInt / 5;
+        
 
     }
 
@@ -37,5 +43,11 @@ public class Upgrades : MonoBehaviour
     {
         speedInt++;
 
+    }
+
+    public void upgradeHealth()
+    {
+        healthInt++;
+        statScript.health += 10;
     }
 }
