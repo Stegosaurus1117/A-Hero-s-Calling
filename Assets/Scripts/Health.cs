@@ -95,7 +95,7 @@ public class Health : MonoBehaviour
     {
         Destroy(gameObject);
         Debug.Log("I am dead");
-        Score.score += 534;
+        Score.score += 10;
     }
 
    

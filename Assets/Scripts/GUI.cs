@@ -20,7 +20,7 @@ public class GUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.text = "Score:" + Score.score;
+        text.text = "$:" + Score.score;
     }
 
 }

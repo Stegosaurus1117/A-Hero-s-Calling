@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Stats : MonoBehaviour
 {
@@ -33,6 +34,7 @@ public class Stats : MonoBehaviour
     void KillSelf()
     {
         Destroy(gameObject);
+        SceneManager.LoadScene(2);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
