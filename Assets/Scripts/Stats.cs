@@ -35,6 +35,7 @@ public class Stats : MonoBehaviour
     {
         Destroy(gameObject);
         SceneManager.LoadScene(2);
+        Score.score = 0;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

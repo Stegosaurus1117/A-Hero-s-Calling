@@ -116,7 +116,16 @@ public class Health : MonoBehaviour
             currentTime = cooldownTime;
             health -= PB.damageValue;
             canBeDamaged = false;
-            
+
+            Vector3 playerPos = PB.gameObject.transform.position;
+            Vector3 pushbackDirection = transform.position - playerPos;
+            Vector3 pushbackForce = pushbackDirection.normalized * PB.knockbackValue * Time.deltaTime;
+
+            Rigidbody2D rb = GetComponent<Rigidbody2D>();
+            rb.AddForce(pushbackForce, ForceMode2D.Impulse);
+
+            EnemyBehaviour behaviour = GetComponent<EnemyBehaviour>();
+            behaviour?.Damaged();
         }
 
         /*

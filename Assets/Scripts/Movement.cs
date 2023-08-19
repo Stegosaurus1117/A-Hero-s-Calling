@@ -58,7 +58,10 @@ public class Movement : MonoBehaviour
     {
         float Vertical = Input.GetAxisRaw("Vertical");
         float horizontal = Input.GetAxisRaw("Horizontal");
-
+        if(transform.position.x > -22.75)
+        {
+            rb.AddForce(new Vector3(100, 0, 0), ForceMode2D.Impulse);
+        }
         playerVelocity = new Vector3(horizontal * movementSpeed, Vertical * movementSpeed, 0f);
 
         //transform.position += playerVelocity * Time.deltaTime;

@@ -3267,7 +3267,7 @@ MonoBehaviour:
   projSpeed: 10
   slashSpeed: 3
   expandCD: 0
-  knockback: 500
+  knockback: 100000
   movement: {fileID: 1398385062}
 --- !u!61 &1398385061
 BoxCollider2D:

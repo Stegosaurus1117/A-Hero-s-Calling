@@ -17,6 +17,7 @@ public class ProjectileBase : MonoBehaviour
     public EType attackType;
     public float damageValue;
     public float moveSpeed;
+    public float knockbackValue;
     
     // Start is called before the first frame update
     void Start()

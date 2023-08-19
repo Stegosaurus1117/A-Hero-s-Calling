@@ -19,10 +19,11 @@ public class Melee : ProjectileBase
         MoveAttack();
     }
 
-    public void SetDefault(float damage, float lifeSpan, float speed)
+    public void SetDefault(float damage, float lifeSpan, float speed, float knockback)
     {
         damageValue = damage;
         moveSpeed = speed;
+        knockbackValue = knockback;
 
         //Initial setup to tell ability how to move
         initialPos = transform.position;

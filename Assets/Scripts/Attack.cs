@@ -31,6 +31,8 @@ public class Attack : MonoBehaviour
     public float projSpeed;
     public float slashSpeed;
     public float expandCD;
+    public float knockback;
+    //e
 
     
 
@@ -121,7 +123,7 @@ public class Attack : MonoBehaviour
             case EType.melee:
                 //Ability side setup
                 instSlash = Instantiate(mSlash, transform.position, transform.rotation, player.transform);
-                instSlash.GetComponent<Melee>().SetDefault(StatScript.meleeDmg, 0.2f, slashSpeed);
+                instSlash.GetComponent<Melee>().SetDefault(StatScript.meleeDmg, 0.2f, slashSpeed, knockback);
                 
                 //Player side setup, attack rate
                 isAttacking = true;
