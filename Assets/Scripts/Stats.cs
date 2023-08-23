@@ -12,6 +12,7 @@ public class Stats : MonoBehaviour
     public float movementSpeed;
     public float meleeDmg;
     public float projDmg;
+    public float projHealth;
     public float expandDmg;
     // Start is called before the first frame update
     public TextMeshProUGUI healthUI;
@@ -29,6 +30,7 @@ public class Stats : MonoBehaviour
         {
             KillSelf();
         }
+        
     }
     
     void KillSelf()
@@ -38,7 +40,8 @@ public class Stats : MonoBehaviour
         Score.score = 0;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {

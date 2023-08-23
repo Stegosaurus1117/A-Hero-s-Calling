@@ -28,10 +28,13 @@ public class Health : MonoBehaviour
     private float currentTime;
     private bool canBeDamaged = true;
 
+    EnemyBehaviour EB;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        EB = GetComponent<EnemyBehaviour>();
     }
 
     // Update is called once per frame
@@ -126,6 +129,7 @@ public class Health : MonoBehaviour
 
             EnemyBehaviour behaviour = GetComponent<EnemyBehaviour>();
             behaviour?.Damaged();
+            EB.flash();
         }
 
         /*

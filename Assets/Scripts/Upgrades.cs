@@ -12,17 +12,21 @@ public class Upgrades : MonoBehaviour
     //speed and health upgrade text
     public TextMeshProUGUI SUT;
     public TextMeshProUGUI HUT;
+    public TextMeshProUGUI PUT;
     //speed and health price text
     public TextMeshProUGUI SPT;
     public TextMeshProUGUI HPT;
+    public TextMeshProUGUI PPT;
 
     private int speedInt;
     private int healthInt;
     private int DisplaySpeedInt;
+    private int penInt;
 
     //speed and health upgrade price
     private int SUP;
     private int HUP;
+    private int PUP;
 
     
     
@@ -34,7 +38,8 @@ public class Upgrades : MonoBehaviour
         healthInt = 0;
         speedInt = 10;
         SUP = 10;
-        HUP = 10;
+        HUP = 20;
+        PUP = 50;
         
     }
 
@@ -47,6 +52,8 @@ public class Upgrades : MonoBehaviour
         HPT.text = "Price: " + HUP;
         SUT.text = "Speed: " + DisplaySpeedInt;
         SPT.text = "Price: " + SUP;
+        PUT.text = "Penetration: " + penInt;
+        PPT.text = "Price: " + PUP;
 
 
         statScript.movementSpeed = speedInt / 5;
@@ -75,10 +82,20 @@ public class Upgrades : MonoBehaviour
             healthInt++;
             statScript.health += 10;
             Score.score -= HUP;
-            HUP += 25;
+            HUP += 20;
         }
-
-       
-      
     }
+
+    public void upgradePen()
+    {
+        if(Score.score >= PUP)
+        {
+            penInt++;
+            statScript.projHealth += 25;
+            Score.score -= PUP;
+            PUP += 50;
+        }
+    }
+      
+
 }
