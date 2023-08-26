@@ -53,6 +53,6 @@ public class EnemySpawn : MonoBehaviour
 
     void ChangeSpawn()
     {
-        transform.position = new Vector3(Random.Range(-15, 15), 6, 0);
+        transform.position = new Vector3(Random.Range(-24, 24), 12, 0);
     }
 }

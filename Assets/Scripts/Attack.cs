@@ -58,26 +58,27 @@ public class Attack : MonoBehaviour
         canExpand = true;
 
         meleeRate = 0.2f;
-        projectileRate = 0.2f;
+        
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        projectileRate = StatScript.fireRate;
         Vector3 MousePos = Input.mousePosition;
         MousePos.z = Camera.main.nearClipPlane;
         WorldPosition = Camera.main.ScreenToWorldPoint(MousePos);
         
-        if(Input.GetKeyDown(KeyCode.Mouse0) && !isAttacking)
+        /*if(Input.GetKeyDown(KeyCode.Mouse0) && !isAttacking)
         {
             DoAttack(EType.melee);
-        }
-        if (Input.GetKeyDown(KeyCode.Mouse1) && !isFired)
+        }*/
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !isFired)
         {
             DoAttack(EType.projectile);
         }
-        if (Input.GetKeyDown(KeyCode.Space) && canExpand)
+        if (Input.GetKeyDown(KeyCode.Mouse1) && canExpand)
         {
             canExpand = false;
             DoAttack(EType.area);
@@ -123,7 +124,7 @@ public class Attack : MonoBehaviour
             case EType.melee:
                 //Ability side setup
                 instSlash = Instantiate(mSlash, transform.position, transform.rotation, player.transform);
-                instSlash.GetComponent<Melee>().SetDefault(StatScript.meleeDmg, 0.2f, slashSpeed, knockback);
+                //instSlash.GetComponent<Melee>().SetDefault(StatScript.meleeDmg, 0.2f, slashSpeed, knockback);
                 
                 //Player side setup, attack rate
                 isAttacking = true;

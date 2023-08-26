@@ -10,7 +10,8 @@ public class Stats : MonoBehaviour
     public float health;
     public float defense;
     public float movementSpeed;
-    public float meleeDmg;
+    //public float meleeDmg;
+    public float fireRate;
     public float projDmg;
     public float projHealth;
     public float expandDmg;

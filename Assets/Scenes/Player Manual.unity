@@ -544,7 +544,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 62, y: 0}
+  m_AnchoredPosition: {x: 94, y: 0}
   m_SizeDelta: {x: 754.5194, y: 520.3947}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1378686230
@@ -569,10 +569,9 @@ MonoBehaviour:
   m_text: "You have appeared on a battlefield of warriors\n         who have forgotten
     why they fight. \n      There's only one thing you can do now.\n\n\t\t      
     Fight Back\n_____________________________________\n\n              Move = WASD
-    or Arrow Keys\n      Melee = left click (don't use it sucks atm)\n                
-    Ranged Attack = Right Click\n                    Area Attack = Spacebar\n\n       
-    Pause Game = Escape or Pause button\n         Upgrades = U key or Upgrades Button\n     
-    \n"
+    or Arrow Keys\n      \t              Attack = left click\n                   
+    Area Attack = Right Click\n\n        Pause Game = Escape or Pause button\n        
+    Upgrades = U key or Upgrades Button\n      \n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

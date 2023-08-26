@@ -8,6 +8,8 @@ public class Movement : MonoBehaviour
 
     private float movementSpeed;
 
+    public float xLimit = 13.5f;
+    public float yLimit = 5f;
     public Vector3 playerVelocity;
     private Vector3 mousePos;
 
@@ -26,10 +28,30 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        movementSpeed = statScript.movementSpeed;
-
         
-   }
+
+        movementSpeed = statScript.movementSpeed;
+        /*if(transform.position.x < -xLimit)
+        {
+            transform.position = new Vector3(xLimit, transform.position.y, transform.position.z);
+        }
+        if (transform.position.x > xLimit)
+        {
+            transform.position = new Vector3(-xLimit, transform.position.y, transform.position.z);
+        }
+        if (transform.position.y < -yLimit)
+        {
+            transform.position = new Vector3(transform.position.x, yLimit, transform.position.z);
+        }
+        if (transform.position.y > yLimit)
+        {
+            transform.position = new Vector3(transform.position.x, -yLimit, transform.position.z);
+        }*/
+        
+
+
+
+    }
 
     private void FixedUpdate()
     {
