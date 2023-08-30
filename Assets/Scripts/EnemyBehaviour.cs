@@ -9,8 +9,8 @@ public class EnemyBehaviour : MonoBehaviour
     GameObject player;
 
     public float enemySpeed;
-    public float noChaseRadius;
-    public float stopForceMultiplier;
+   public float noChaseRadius;
+    //public float stopForceMultiplier;
     
     float distance;
     bool isDamaged;
@@ -45,7 +45,7 @@ public class EnemyBehaviour : MonoBehaviour
         if(player != null)
         {
             distance = Vector3.Distance(transform.position, player.transform.position);
-            if (distance > noChaseRadius)
+           if (distance > noChaseRadius)
             {
                 direction = player.transform.position - transform.position;
                 Vector3 force = direction.normalized * Time.deltaTime * enemySpeed;
