@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4895118444220715214}
   - component: {fileID: 4895118444220715211}
   - component: {fileID: 4895118444220715204}
+  - component: {fileID: 7749531192346148923}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -157,4 +158,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemySpeed: 200
   noChaseRadius: 2
-  stopForceMultiplier: 1000
+--- !u!114 &7749531192346148923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4895118444220715213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62118ca17f1574f4f9ebc26af6062a4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

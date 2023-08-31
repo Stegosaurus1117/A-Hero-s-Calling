@@ -76,7 +76,7 @@ public class Health : MonoBehaviour
 
         if (health <= 0)
         {
-            KillSelf();
+            Invoke("KillSelf", 0.05f);
             
         }
     }
@@ -97,7 +97,7 @@ public class Health : MonoBehaviour
     void KillSelf()
     {
         Destroy(gameObject);
-        Debug.Log("I am dead");
+        
         Score.score += 10;
     }
 

@@ -8,6 +8,7 @@ TagManager:
   - Expander
   - Melee
   - Enemy
+  - minion
   layers:
   - Default
   - TransparentFX

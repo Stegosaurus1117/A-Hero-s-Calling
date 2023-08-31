@@ -10,6 +10,8 @@ public class EnemySpawn : MonoBehaviour
     public GameObject basicEnemy;
     public GameObject toughEnemy;
     public GameObject speedyEnemy;
+    public GameObject bossEnemy;
+    public GameObject minionEnemy;
 
     
 
@@ -18,13 +20,15 @@ public class EnemySpawn : MonoBehaviour
     float spawnTimer;
 
     float waveTimer;
-    float waveDuration = 5f;
+    float waveDuration = 2f;
 
     int EnemyType;
     int EnemyNumber;
     int waveNumber;
+    public int BossNumber;
 
     bool hasSpawned = true;
+    public bool bosswave = false;
 
     Vector3 randomSpawn;
     // Start is called before the first frame update
@@ -44,26 +48,37 @@ public class EnemySpawn : MonoBehaviour
     void Update()
     {
         
-        waveTimer += Time.deltaTime;
-        if(waveTimer > waveDuration)
+        if (BossNumber == 0 && bosswave == true)
         {
-            waveTimer = 0;
+            bosswave = false;
             waveNumber++;
-            Debug.Log(waveNumber);
-
-            if (enemySpawnRate > 0.1f)
-            {
-                enemySpawnRate -= 0.1f;
-            }
         }
 
-        if (hasSpawned)
+        waveTimer += Time.deltaTime;
+        if(bosswave == false)
+        {
+            if (waveTimer > waveDuration)
+            {
+                waveTimer = 0;
+                waveNumber++;
+                CheckForBossWave();
+                Debug.Log(waveNumber);
+
+                if (enemySpawnRate > 0.1f)
+                {
+                    enemySpawnRate -= 0.1f;
+                }
+            }
+        }
+        
+
+        if (hasSpawned && bosswave == false)
         {
             spawnTimer += Time.deltaTime;
         }
         
 
-        if(spawnTimer > enemySpawnRate)
+        if(spawnTimer > enemySpawnRate && bosswave == false)
         {
             spawnTimer = 0f;
             hasSpawned = false;
@@ -86,34 +101,60 @@ public class EnemySpawn : MonoBehaviour
     void SpawnEnemy()
     {
         if (player == null) return;
-
-        EnemyType = Random.Range(1, EnemyNumber);
         
-        switch (EnemyType)
+        
         {
-            case 1:
-                Instantiate(basicEnemy, transform.position, transform.rotation);
-                SpawnInt = 1f;
-                break;
-            case 2:
-                Instantiate(speedyEnemy, transform.position, transform.rotation);
-                SpawnInt = 1.5f;
-                break;
-            case 3:
-                Instantiate(toughEnemy, transform.position, transform.rotation);
-                SpawnInt = 2f;
-                break;
+            EnemyType = Random.Range(1, EnemyNumber);
 
+            switch (EnemyType)
+            {
+                case 1:
+                    Instantiate(basicEnemy, transform.position, transform.rotation);
+                    SpawnInt = 1f;
+                    break;
+                case 2:
+                    Instantiate(speedyEnemy, transform.position, transform.rotation);
+                    SpawnInt = 1.5f;
+                    break;
+                case 3:
+                    Instantiate(toughEnemy, transform.position, transform.rotation);
+                    SpawnInt = 2f;
+                    break;
+
+            }
+            //enemySpawnRate = SpawnInt * waveNumber;
+
+            hasSpawned = true;
+
+            ChangeSpawn();
         }
-        //enemySpawnRate = SpawnInt * waveNumber;
-
-        hasSpawned = true;
-
-        ChangeSpawn();
+        
     }
 
     void ChangeSpawn()
     {
-        transform.position = new Vector3(Random.Range(-24, 24), 12, 0);
+        transform.position = new Vector3(Random.Range(-26, 28), 17.25f, 0);
+        
+    }
+
+    void CheckForBossWave()
+    {
+        if (waveNumber == 5 || waveNumber == 10 || waveNumber == 15 || waveNumber == 20)
+        {
+            
+            for(int i = 0; i <= waveNumber; i += 5)
+            {
+
+                Instantiate(bossEnemy, transform.position + new Vector3(0, 2, 0), transform.rotation);
+                BossNumber++;
+                ChangeSpawn();
+               
+            }
+            bosswave = true;
+           
+        }
+        
+
+       
     }
 }
