@@ -22,11 +22,16 @@ public class ActivateUpgradeMenu : MonoBehaviour
         {
             AppearUpgradeMenu();
         }
+
     }
 
     public void AppearUpgradeMenu()
     {
         upgradeMenu.SetActive(!upgradeMenu.activeSelf);
+        Cursor.visible = !Cursor.visible;
+
+        Score.isPlaying = !Score.isPlaying;
+
 
         Color col = Color.black;
 

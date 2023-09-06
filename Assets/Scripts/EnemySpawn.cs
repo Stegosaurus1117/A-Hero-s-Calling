@@ -20,11 +20,12 @@ public class EnemySpawn : MonoBehaviour
     float spawnTimer;
 
     float waveTimer;
-    float waveDuration = 2f;
+    float waveDuration = 1f;
 
     int EnemyType;
     int EnemyNumber;
     int waveNumber;
+    int maxBossSpawn = 2;
     public int BossNumber;
 
     bool hasSpawned = true;
@@ -139,10 +140,14 @@ public class EnemySpawn : MonoBehaviour
 
     void CheckForBossWave()
     {
-        if (waveNumber == 5 || waveNumber == 10 || waveNumber == 15 || waveNumber == 20)
+        if (waveNumber % 5 == 0)
         {
+            int wave5Fold = waveNumber / 5;
+
+            if (waveNumber > 25) wave5Fold = maxBossSpawn;
             
-            for(int i = 0; i <= waveNumber; i += 5)
+            
+            for(int i = 0; i < wave5Fold; i++)
             {
 
                 Instantiate(bossEnemy, transform.position + new Vector3(0, 2, 0), transform.rotation);

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class KillSelf : MonoBehaviour
 {
+    public int MoneyForKill;
     Health healthscript;
     // Start is called before the first frame update
     void Start()
@@ -17,7 +18,7 @@ public class KillSelf : MonoBehaviour
         if(healthscript.health <= 0)
         {
             Destroy(gameObject);
-            Score.score += 10;
+            Score.score += MoneyForKill;
         }
     }
 }

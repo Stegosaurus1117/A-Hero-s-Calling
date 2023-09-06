@@ -170,3 +170,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62118ca17f1574f4f9ebc26af6062a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MoneyForKill: 10

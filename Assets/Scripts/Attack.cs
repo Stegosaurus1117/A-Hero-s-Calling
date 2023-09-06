@@ -110,41 +110,44 @@ public class Attack : MonoBehaviour
          
     void DoAttack(EType atkType)
     {
-        
-        Vector3 MousePos = Input.mousePosition;
-        mousePos.z = 0f;
-
-        WorldPosition = Camera.main.ScreenToWorldPoint(MousePos);
-        meleeDestination = WorldPosition;
-        playerPos = transform.position;
-        attackmousePos = WorldPosition;
-
-        switch (atkType)
+        if (Score.isPlaying == true)
         {
-            case EType.melee:
-                //Ability side setup
-                instSlash = Instantiate(mSlash, transform.position, transform.rotation, player.transform);
-                //instSlash.GetComponent<Melee>().SetDefault(StatScript.meleeDmg, 0.2f, slashSpeed, knockback);
-                
-                //Player side setup, attack rate
-                isAttacking = true;
-                Invoke("ResetAttack", meleeRate);
-                break;
-            case EType.projectile:
-                instProjectile = Instantiate(Projectile, transform.position, transform.rotation);
-                instProjectile.GetComponent<Projectile>().SetDefault(StatScript.projDmg, 3f, projSpeed);
+            Vector3 MousePos = Input.mousePosition;
+            mousePos.z = 0f;
 
-                isFired = true;
-                Invoke("ResetProjectile", projectileRate);
-                break;
-            case EType.area:
-                
-                instExpander = Instantiate(expander, transform.position, transform.rotation, player.transform);
-                    
-                instExpander.GetComponent<Expand>().SetDefault(StatScript.expandDmg, 0.5f, expandCD);
-                Invoke("ResetExpand", 5f);
-                break;
+            WorldPosition = Camera.main.ScreenToWorldPoint(MousePos);
+            meleeDestination = WorldPosition;
+            playerPos = transform.position;
+            attackmousePos = WorldPosition;
+
+            switch (atkType)
+            {
+                case EType.melee:
+                    //Ability side setup
+                    instSlash = Instantiate(mSlash, transform.position, transform.rotation, player.transform);
+                    //instSlash.GetComponent<Melee>().SetDefault(StatScript.meleeDmg, 0.2f, slashSpeed, knockback);
+
+                    //Player side setup, attack rate
+                    isAttacking = true;
+                    Invoke("ResetAttack", meleeRate);
+                    break;
+                case EType.projectile:
+                    instProjectile = Instantiate(Projectile, transform.position, transform.rotation);
+                    instProjectile.GetComponent<Projectile>().SetDefault(StatScript.projDmg, 3f, projSpeed);
+
+                    isFired = true;
+                    Invoke("ResetProjectile", projectileRate);
+                    break;
+                case EType.area:
+
+                    instExpander = Instantiate(expander, transform.position, transform.rotation, player.transform);
+
+                    instExpander.GetComponent<Expand>().SetDefault(StatScript.expandDmg, 0.5f, expandCD);
+                    Invoke("ResetExpand", 5f);
+                    break;
+            }
         }
+     
     }
 
    /* void MoveAttack()

@@ -23,12 +23,16 @@ public class PauseScript : MonoBehaviour
         {
             ActivatePauseMenu();
         }
+
+        
     }
 
     public void ActivatePauseMenu()
     {
         pauseMenu.SetActive(!pauseMenu.activeSelf);
-
+        Score.isPlaying = !Score.isPlaying;
+        
+        
         Color col = Color.black;
 
         if (pauseMenu.activeSelf)

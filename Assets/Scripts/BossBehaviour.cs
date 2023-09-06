@@ -28,16 +28,21 @@ public class BossBehaviour : MonoBehaviour
 
         if(healthScript.health <= 0)
         {
-            spawnScript.BossNumber -= 1; ;
+            spawnScript.BossNumber -= 1; 
             Score.score += 500;
             Destroy(gameObject);
         }
         if(spawnTimer > spawnspeed)
         {
-            posoffset = new Vector3(Random.Range(-2, 2), 0, 0);
+            spawnTimer = 0;
             Instantiate(minion, transform.position + posoffset, transform.rotation);
+            ChangeOffset();
         }
         
 
+    }
+    void ChangeOffset()
+    {
+        posoffset = new Vector3(Random.Range(-1.8f, 1.1f), 1f, 0f);
     }
 }
