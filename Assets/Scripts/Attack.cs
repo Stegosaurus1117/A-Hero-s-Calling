@@ -136,7 +136,7 @@ public class Attack : MonoBehaviour
                     instProjectile.GetComponent<Projectile>().SetDefault(StatScript.projDmg, 3f, projSpeed);
 
                     isFired = true;
-                    Invoke("ResetProjectile", projectileRate);
+                    Invoke("ResetProjectile", StatScript.fireRate);
                     break;
                 case EType.area:
 

@@ -14,24 +14,29 @@ public class Upgrades : MonoBehaviour
     public TextMeshProUGUI HUT;
     public TextMeshProUGUI PUT;
     public TextMeshProUGUI DUT;
+    public TextMeshProUGUI FRUT;
     
     //speed and health price text
     public TextMeshProUGUI SPT;
     public TextMeshProUGUI HPT;
     public TextMeshProUGUI PPT;
     public TextMeshProUGUI DPT;
+    public TextMeshProUGUI FRPT;
+
 
     private int speedInt;
     private int healthInt;
     private int DisplaySpeedInt;
     private int penInt;
     private int DamageInt;
+    private int fireRateInt;
 
     //speed and health upgrade price
     private int SUP;
     private int HUP;
     private int PUP;
     private int DUP;
+    private int FRUP;
 
     
     
@@ -44,8 +49,9 @@ public class Upgrades : MonoBehaviour
         speedInt = 10;
         SUP = 10;
         HUP = 20;
-        PUP = 50;
+        PUP = 75;
         DUP = 50;
+        FRUP = 50;
         
     }
 
@@ -62,6 +68,9 @@ public class Upgrades : MonoBehaviour
         PPT.text = "Price: " + PUP;
         DUT.text = "Damage: " + DamageInt;
         DPT.text = "Price: " + DUP;
+        FRUT.text = "Firerate: " + fireRateInt;
+        FRPT.text = "Price: " + FRUP;
+        
 
 
         statScript.movementSpeed = speedInt / 5;
@@ -104,9 +113,22 @@ public class Upgrades : MonoBehaviour
         if(Score.score >= DUP)
         {
             DamageInt++;
-            statScript.projDmg += 12.5f;
+            statScript.projDmg += 6.25f;
             Score.score -= DUP;
             DUP += 50;
+        }
+    }
+      public void upgradeFireRate()
+    {
+        if(Score.score >= FRUP)
+        {
+            fireRateInt++;
+            if(statScript.fireRate <= 0.2f)
+            {
+                statScript.fireRate -= 0.05f;
+            }
+            Score.score -= FRUP;
+            FRUP += 50;
         }
     }
       

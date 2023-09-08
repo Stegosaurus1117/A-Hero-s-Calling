@@ -12,20 +12,21 @@ public class EnemySpawn : MonoBehaviour
     public GameObject speedyEnemy;
     public GameObject bossEnemy;
     public GameObject minionEnemy;
+    public float spawnYLimit = 16f;
+    public float spawnXLimit = 25f;
 
-    
 
     float enemySpawnRate;
     float SpawnInt;
     float spawnTimer;
 
     float waveTimer;
-    float waveDuration = 1f;
+    float waveDuration = 15f;
 
     int EnemyType;
     int EnemyNumber;
     int waveNumber;
-    int maxBossSpawn = 2;
+    int maxBossSpawn = 5;
     public int BossNumber;
 
     bool hasSpawned = true;
@@ -102,23 +103,33 @@ public class EnemySpawn : MonoBehaviour
     void SpawnEnemy()
     {
         if (player == null) return;
-        
-        
         {
             EnemyType = Random.Range(1, EnemyNumber);
+
+            Vector3[] spawns = new Vector3[4];
+
+            Vector3 spawnLeftPos = new Vector3(-spawnXLimit, Random.Range(spawnYLimit, -spawnYLimit), transform.position.z);
+            Vector3 spawnRightPos = new Vector3(spawnXLimit, Random.Range(spawnYLimit, -spawnYLimit), transform.position.z);
+            Vector3 spawnUpPos = new Vector3(Random.Range(spawnXLimit, -spawnXLimit), spawnYLimit, transform.position.z);
+            Vector3 spawnBottomPos = new Vector3(Random.Range(spawnXLimit, -spawnXLimit), -spawnYLimit, transform.position.z);
+
+            spawns[0] = spawnLeftPos;
+            spawns[1] = spawnRightPos;
+            spawns[2] = spawnUpPos;
+            spawns[3] = spawnBottomPos;
 
             switch (EnemyType)
             {
                 case 1:
-                    Instantiate(basicEnemy, transform.position, transform.rotation);
+                    Instantiate(basicEnemy, spawns[Random.Range(0, spawns.Length)], transform.rotation);
                     SpawnInt = 1f;
                     break;
                 case 2:
-                    Instantiate(speedyEnemy, transform.position, transform.rotation);
+                    Instantiate(speedyEnemy, spawns[Random.Range(0, spawns.Length)], transform.rotation);
                     SpawnInt = 1.5f;
                     break;
                 case 3:
-                    Instantiate(toughEnemy, transform.position, transform.rotation);
+                    Instantiate(toughEnemy, spawns[Random.Range(0, spawns.Length)], transform.rotation);
                     SpawnInt = 2f;
                     break;
 
@@ -127,7 +138,7 @@ public class EnemySpawn : MonoBehaviour
 
             hasSpawned = true;
 
-            ChangeSpawn();
+            //ChangeSpawn();
         }
         
     }
