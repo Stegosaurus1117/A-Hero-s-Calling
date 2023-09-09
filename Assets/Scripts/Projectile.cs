@@ -60,5 +60,9 @@ public class Projectile : ProjectileBase
         {
             instprojhealth -= 25;
         }
+        if(collision.gameObject.tag == "minion")
+        {
+            instprojhealth -= 5;
+        }
     }
 }

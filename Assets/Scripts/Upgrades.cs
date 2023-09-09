@@ -71,18 +71,31 @@ public class Upgrades : MonoBehaviour
         FRUT.text = "Firerate: " + fireRateInt;
         FRPT.text = "Price: " + FRUP;
         
+        if(fireRateInt == 15)
+        {
+            FRPT.text = "MAXED";
+            
+        }
 
+        if(speedInt == 30)
+        {
+            SPT.text = "MAXED";
+        }
 
         statScript.movementSpeed = speedInt / 5;
     }
 
     public void upgradeSpeed()
     {
+        if(speedInt < 30)
+        {
         if(Score.score >= SUP)
         {
             speedInt++;
             Score.score -= SUP;
             SUP += 10;
+        }
+
         }
         
 
@@ -120,15 +133,19 @@ public class Upgrades : MonoBehaviour
     }
       public void upgradeFireRate()
     {
+        if(fireRateInt < 15)
+        {
         if(Score.score >= FRUP)
         {
             fireRateInt++;
-            if(statScript.fireRate <= 0.2f)
+            if(statScript.fireRate >= 0.2f)
             {
-                statScript.fireRate -= 0.05f;
+                statScript.fireRate -= 0.06f;
             }
             Score.score -= FRUP;
             FRUP += 50;
+        }
+
         }
     }
       

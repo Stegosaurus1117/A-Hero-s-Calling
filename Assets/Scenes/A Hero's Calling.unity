@@ -1478,7 +1478,7 @@ RectTransform:
   - {fileID: 1003846072}
   - {fileID: 907458083}
   m_Father: {fileID: 1252515643}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3709,7 +3709,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1143029386}
-        m_MethodName: upgradeDamage
+        m_MethodName: upgradeFireRate
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4471,8 +4471,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1308362765}
   - {fileID: 389600010}
+  - {fileID: 1308362765}
   - {fileID: 148925589}
   - {fileID: 874785989}
   - {fileID: 500262465}
@@ -4542,7 +4542,7 @@ RectTransform:
   - {fileID: 381074196}
   - {fileID: 1846276970}
   m_Father: {fileID: 1252515643}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5105,7 +5105,7 @@ MonoBehaviour:
   health: 100
   defense: 0
   movementSpeed: 1
-  fireRate: 1.2
+  fireRate: 1
   projDmg: 25
   projHealth: 25
   expandDmg: 50

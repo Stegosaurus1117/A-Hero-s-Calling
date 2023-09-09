@@ -18,9 +18,16 @@ public class Stats : MonoBehaviour
     // Start is called before the first frame update
     public TextMeshProUGUI healthUI;
 
+
+    private float flashTime = 0.1f;
+    private Color flashColor = Color.white;
+    private Color originalColor;
+    private Material mat;
+
     void Start()
     {
-       
+        mat = GetComponent<MeshRenderer>().material;
+        originalColor = mat.color;
     }
 
     // Update is called once per frame
@@ -46,8 +53,20 @@ public class Stats : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy"|| collision.gameObject.tag == "minion")
         {
+            flash();
             health -= 10;
             Debug.Log(health);
         }
+    }
+
+    public void flash()
+    {
+        mat.color = flashColor;
+        Invoke("ResetColor", flashTime);
+    }
+
+    void ResetColor()
+    {
+        mat.color = originalColor;
     }
 }

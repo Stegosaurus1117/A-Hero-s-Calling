@@ -21,7 +21,7 @@ public class EnemySpawn : MonoBehaviour
     float spawnTimer;
 
     float waveTimer;
-    float waveDuration = 15f;
+    float waveDuration = 25f;
 
     int EnemyType;
     int EnemyNumber;
@@ -39,7 +39,7 @@ public class EnemySpawn : MonoBehaviour
         player = GameObject.Find("Player");
         EnemyNumber = 2;
         waveNumber = 1;
-        enemySpawnRate = 2;
+        enemySpawnRate = 3;
 
         speedyEnemy.SetActive(false);
         toughEnemy.SetActive(false);
@@ -84,8 +84,8 @@ public class EnemySpawn : MonoBehaviour
         {
             spawnTimer = 0f;
             hasSpawned = false;
+
             SpawnEnemy();
-            
         }
         if(waveNumber == 5)
         {
@@ -151,19 +151,30 @@ public class EnemySpawn : MonoBehaviour
 
     void CheckForBossWave()
     {
-        if (waveNumber % 5 == 0)
+        if (waveNumber % 8 == 0)
         {
-            int wave5Fold = waveNumber / 5;
+            int wave5Fold = waveNumber / 8;
 
-            if (waveNumber > 25) wave5Fold = maxBossSpawn;
+            if (waveNumber > 40) wave5Fold = maxBossSpawn;
             
             
             for(int i = 0; i < wave5Fold; i++)
             {
+                Vector3[] spawns = new Vector3[4];
 
-                Instantiate(bossEnemy, transform.position + new Vector3(0, 2, 0), transform.rotation);
+                Vector3 spawnLeftPos = new Vector3(-spawnXLimit, Random.Range(spawnYLimit, -spawnYLimit), transform.position.z);
+                Vector3 spawnRightPos = new Vector3(spawnXLimit, Random.Range(spawnYLimit, -spawnYLimit), transform.position.z);
+                Vector3 spawnUpPos = new Vector3(Random.Range(spawnXLimit, -spawnXLimit), spawnYLimit, transform.position.z);
+                Vector3 spawnBottomPos = new Vector3(Random.Range(spawnXLimit, -spawnXLimit), -spawnYLimit, transform.position.z);
+
+                spawns[0] = spawnLeftPos;
+                spawns[1] = spawnRightPos;
+                spawns[2] = spawnUpPos;
+                spawns[3] = spawnBottomPos;
+                //Instantiate(bossEnemy, transform.position + new Vector3(0, 2, 0), transform.rotation);
+                Instantiate(bossEnemy, spawns[Random.Range(0, spawns.Length)], transform.rotation);
                 BossNumber++;
-                ChangeSpawn();
+                
                
             }
             bosswave = true;
