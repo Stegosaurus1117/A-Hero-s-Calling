@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class ActivateUpgradeMenu : MonoBehaviour
 {
     private GameObject upgradeMenu;
@@ -27,25 +28,31 @@ public class ActivateUpgradeMenu : MonoBehaviour
 
     public void AppearUpgradeMenu()
     {
-        upgradeMenu.SetActive(!upgradeMenu.activeSelf);
-        Cursor.visible = !Cursor.visible;
-
-        Score.isPlaying = !Score.isPlaying;
-
-
-        Color col = Color.black;
-
-        if (upgradeMenu.activeSelf)
+        if (!Score.PauseActive)
         {
-            col = new Color(50f, 50f, 50f, 0.8f);
-            Time.timeScale = 0;
-        }
-        else
-        {
-            col = new Color(0f, 0f, 0f, 0f);
-            Time.timeScale = 1;
-        }
+            Score.UpgradeMenuActive = !Score.UpgradeMenuActive;
+            upgradeMenu.SetActive(!upgradeMenu.activeSelf);
+            Cursor.visible = !Cursor.visible;
+            Score.isPlaying = !Score.isPlaying;
 
-        Panel.GetComponent<Image>().color = col;
+
+            Color col = Color.black;
+
+            if (upgradeMenu.activeSelf)
+            {
+                col = new Color(50f, 50f, 50f, 0.8f);
+                Time.timeScale = 0;
+            }
+            else
+            {
+                col = new Color(0f, 0f, 0f, 0f);
+                Time.timeScale = 1;
+            }
+
+            Panel.GetComponent<Image>().color = col;
+        }
+            
+        
+        
     }
 }

@@ -7,6 +7,9 @@ public class PauseScript : MonoBehaviour
 {
     private GameObject pauseMenu;
     private GameObject Panel;
+    public GameObject UpgradeButton;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -19,33 +22,37 @@ public class PauseScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && Score.isPlaying)
+        Debug.Log(Cursor.visible);
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             ActivatePauseMenu();
         }
-
-        
     }
 
     public void ActivatePauseMenu()
     {
-        pauseMenu.SetActive(!pauseMenu.activeSelf);
-        Score.isPlaying = !Score.isPlaying;
-        
-        
-        Color col = Color.black;
-
-        if (pauseMenu.activeSelf)
+        if (!Score.UpgradeMenuActive)
         {
-            col = new Color(0f, 0f, 0f, 0.7f);
-            Time.timeScale = 0;
-        }
-        else
-        {
-            col = new Color(0f, 0f, 0f, 0f);
-            Time.timeScale = 1;
-        }
+            UpgradeButton.SetActive(!UpgradeButton.activeSelf);
+            Score.PauseActive = !Score.PauseActive;
+            pauseMenu.SetActive(!pauseMenu.activeSelf);
+            Score.isPlaying = !Score.isPlaying;
+            Cursor.visible = false;
+            Cursor.visible = pauseMenu.activeSelf;
+            Color col = Color.black;
 
-        Panel.GetComponent<Image>().color = col;
+            if (pauseMenu.activeSelf)
+            {
+                col = new Color(0f, 0f, 0f, 0.7f);
+                Time.timeScale = 0;
+            }
+            else
+            {
+                col = new Color(0f, 0f, 0f, 0f);
+                Time.timeScale = 1;
+            }
+
+            Panel.GetComponent<Image>().color = col;
+        }
     }
 }

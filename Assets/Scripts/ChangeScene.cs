@@ -24,5 +24,6 @@ public class ChangeScene : MonoBehaviour
         SceneManager.LoadScene(nextScene);
         Time.timeScale = 1;
         Cursor.visible = true;
+        Score.isPlaying = true;
     }
 }

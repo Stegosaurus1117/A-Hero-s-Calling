@@ -97,8 +97,6 @@ public class Upgrades : MonoBehaviour
         }
 
         }
-        
-
     }
 
     public void upgradeHealth()
