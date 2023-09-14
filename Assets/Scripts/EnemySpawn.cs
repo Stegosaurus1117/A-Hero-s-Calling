@@ -21,7 +21,7 @@ public class EnemySpawn : MonoBehaviour
     float spawnTimer;
 
     float waveTimer;
-    float waveDuration = 25f;
+    float waveDuration = 0.01f;
 
     int EnemyType;
     int EnemyNumber;
@@ -63,12 +63,17 @@ public class EnemySpawn : MonoBehaviour
             {
                 waveTimer = 0;
                 waveNumber++;
-                CheckForBossWave();
-                Debug.Log(waveNumber);
+                //CheckForBossWave();
+                Debug.Log(enemySpawnRate);
 
-                if (enemySpawnRate > 0.1f)
+                if (enemySpawnRate >= 0.2f)
                 {
                     enemySpawnRate -= 0.1f;
+                }
+                
+                if (enemySpawnRate <= 0.2f)
+                {
+                    enemySpawnRate = 0.2f;
                 }
             }
         }

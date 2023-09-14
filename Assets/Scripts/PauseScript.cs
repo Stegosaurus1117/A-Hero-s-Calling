@@ -22,7 +22,7 @@ public class PauseScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Cursor.visible);
+        
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             ActivatePauseMenu();

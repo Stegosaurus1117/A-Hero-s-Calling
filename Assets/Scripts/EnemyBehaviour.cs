@@ -45,13 +45,13 @@ public class EnemyBehaviour : MonoBehaviour
         if(player != null)
         {
             distance = Vector3.Distance(transform.position, player.transform.position);
-           if (distance > noChaseRadius)
-            {
+           
+            
                 direction = player.transform.position - transform.position;
                 Vector3 force = direction.normalized * Time.deltaTime * enemySpeed;
                 rb.velocity = force;
                 //rb.AddForce(force * 10);
-            }
+            
             /*else if(distance <= noChaseRadius && !isDamaged)
             {
                 Vector3 velocity = rb.velocity;
