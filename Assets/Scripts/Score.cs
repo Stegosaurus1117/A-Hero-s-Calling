@@ -6,6 +6,8 @@ using UnityEngine;
 public static class Score
 {
     public static int score;
+    public static int experience;
+    public static int difficulty;
     
 
     public static bool PauseActive = false;

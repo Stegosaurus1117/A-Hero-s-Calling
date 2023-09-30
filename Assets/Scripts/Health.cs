@@ -35,6 +35,8 @@ public class Health : MonoBehaviour
     void Start()
     {
         EB = GetComponent<EnemyBehaviour>();
+
+      
     }
 
     // Update is called once per frame

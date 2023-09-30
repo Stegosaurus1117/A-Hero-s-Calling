@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Abilities.unity
     guid: 307bde2f0c461434aba73095b37f9a08
+  - enabled: 1
+    path: Assets/Scenes/Difficulty Selector.unity
+    guid: 663293cf3a9907a4c9d98fec865fae21
   m_configObjects: {}

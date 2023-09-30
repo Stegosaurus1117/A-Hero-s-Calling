@@ -36,6 +36,14 @@ public class EnemySpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(Score.difficulty == 1)
+        {
+            enemySpawnRate += 1.5f;
+        }
+        if(Score.difficulty == 2)
+        {
+            enemySpawnRate += 0.75f;
+        }
         player = GameObject.Find("Player");
         EnemyNumber = 2;
         waveNumber = 1;
@@ -63,7 +71,10 @@ public class EnemySpawn : MonoBehaviour
             {
                 waveTimer = 0;
                 waveNumber++;
-                CheckForBossWave();
+                if(Score.difficulty > 1)
+                {
+                    CheckForBossWave();
+                }
                 Debug.Log(enemySpawnRate);
 
                 if (enemySpawnRate >= 0.2f)

@@ -10,6 +10,15 @@ public class KillSelf : MonoBehaviour
     void Start()
     {
         healthscript = GetComponent<Health>();
+
+        if (Score.difficulty == 1 && gameObject.tag == "Enemy")
+        {
+            MoneyForKill += 10;
+        }
+        if (Score.difficulty == 2 && gameObject.tag == "Enemy")
+        {
+            MoneyForKill += 5;
+        }
     }
 
     // Update is called once per frame

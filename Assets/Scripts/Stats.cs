@@ -28,6 +28,15 @@ public class Stats : MonoBehaviour
     {
         mat = GetComponent<MeshRenderer>().material;
         originalColor = mat.color;
+        
+        if(Score.difficulty == 1)
+        {
+            projDmg += 35;
+        }
+        if(Score.difficulty == 2)
+        {
+            projDmg += 15;
+        }
     }
 
     // Update is called once per frame
