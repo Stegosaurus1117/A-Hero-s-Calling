@@ -45,12 +45,14 @@ public class Attack : MonoBehaviour
 
     public Movement movement;
     Stats StatScript;
+    Abilities AS;
 
   
     // Start is called before the first frame update
     void Start()
     {
         StatScript = GetComponent<Stats>();
+        AS = GameObject.Find("Abilities").GetComponent<Abilities>();
         player = GameObject.Find("Player");
 
         isFired = false;
@@ -78,7 +80,7 @@ public class Attack : MonoBehaviour
         {
             DoAttack(EType.projectile);
         }
-        if (Input.GetKeyDown(KeyCode.Mouse1) && canExpand)
+        if (Input.GetKeyDown(KeyCode.Mouse1) && canExpand && AS.abilityActive == 1)
         {
             canExpand = false;
             DoAttack(EType.area);
@@ -142,7 +144,7 @@ public class Attack : MonoBehaviour
 
                     instExpander = Instantiate(expander, transform.position, transform.rotation, player.transform);
 
-                    instExpander.GetComponent<Expand>().SetDefault(StatScript.expandDmg, 0.5f, expandCD);
+                    instExpander.GetComponent<Expand>().SetDefault(StatScript.expandDmg, 0.4f, expandCD);
                     Invoke("ResetExpand", 5f);
                     break;
             }

@@ -14,10 +14,12 @@ public class EnemyBehaviour : MonoBehaviour
     
     float distance;
     bool isDamaged;
+    bool following = true;
 
     Vector3 directionOffset;
     Vector3 direction;
     Vector3 randomOffSet;
+    Vector3 force;
 
     Rigidbody2D rb;
 
@@ -48,17 +50,22 @@ public class EnemyBehaviour : MonoBehaviour
            
             
                 direction = player.transform.position - transform.position;
-                Vector3 force = direction.normalized * Time.deltaTime * enemySpeed;
-                rb.velocity = force;
-                //rb.AddForce(force * 10);
-            
+            if(following == true)
+            {
+                force = direction.normalized * Time.deltaTime * enemySpeed;
+
+            }
+            rb.velocity = force;
+
+            //rb.AddForce(force * 10);
+
             /*else if(distance <= noChaseRadius && !isDamaged)
             {
                 Vector3 velocity = rb.velocity;
                 rb.AddForce(-velocity * stopForceMultiplier * Time.deltaTime);
             }*/
         }
-     
+
         //RandomizeMovement();
     }
 
@@ -80,5 +87,21 @@ public class EnemyBehaviour : MonoBehaviour
     void ResetColor()
     {
         mat.color = originalColor;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Expander")
+        {
+            following = false;
+            force = -direction.normalized * Time.deltaTime * enemySpeed * 5;
+            Invoke("ReturnToNormal", 0.35f);
+            Debug.Log("u");
+        }
+    }
+
+    void ReturnToNormal()
+    {
+        following = true;
     }
 }

@@ -6,7 +6,8 @@ using UnityEngine;
 public static class Score
 {
     public static int score;
-    public static int experience;
+    public static float addupexp;
+    public static float experience;
     public static int difficulty;
     
 

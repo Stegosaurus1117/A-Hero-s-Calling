@@ -55,6 +55,8 @@ public class Stats : MonoBehaviour
         Destroy(gameObject);
         SceneManager.LoadScene(2);
         Score.score = 0;
+        //Score.experience += Score.addupexp;
+        //Score.addupexp = 0;
     }
 
     
@@ -64,7 +66,7 @@ public class Stats : MonoBehaviour
         {
             flash();
             health -= 10;
-            Debug.Log(health);
+            //Debug.Log(health);
         }
     }
 

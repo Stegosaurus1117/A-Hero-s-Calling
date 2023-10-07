@@ -102,7 +102,6 @@ public class Health : MonoBehaviour
         
         Score.score += 10;
     }
-
    
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -112,6 +111,8 @@ public class Health : MonoBehaviour
         {
             Attack(objScript);
         }
+
+        
     }
     public void Attack(ProjectileBase PB)
     {
@@ -133,6 +134,8 @@ public class Health : MonoBehaviour
             behaviour?.Damaged();
             EB.flash();
         }
+
+       
 
         /*
         Action<float> DoStuff  = (float test) => {

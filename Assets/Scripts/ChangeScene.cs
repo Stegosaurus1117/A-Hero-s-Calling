@@ -21,6 +21,7 @@ public class ChangeScene : MonoBehaviour
 
     public void LoadNextScene(int nextScene)
     {
+        Debug.Log("NEXT:: " + nextScene);
         SceneManager.LoadScene(nextScene);
         Time.timeScale = 1;
         Cursor.visible = true;

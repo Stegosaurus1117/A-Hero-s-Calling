@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Abilities : MonoBehaviour
 {
+    public int abilityActive = 1;
     // Start is called before the first frame update
     void Start()
     {

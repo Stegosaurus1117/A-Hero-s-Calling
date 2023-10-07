@@ -19,6 +19,7 @@ public class EnemySpawn : MonoBehaviour
     float enemySpawnRate;
     float SpawnInt;
     float spawnTimer;
+    float difficultyBuffer = 1;
 
     float waveTimer;
     float waveDuration = 15f;
@@ -38,10 +39,12 @@ public class EnemySpawn : MonoBehaviour
     {
         if(Score.difficulty == 1)
         {
+            difficultyBuffer += 0.5f;
             enemySpawnRate += 1.5f;
         }
         if(Score.difficulty == 2)
         {
+            difficultyBuffer += 1f;
             enemySpawnRate += 0.75f;
         }
         player = GameObject.Find("Player");
@@ -71,6 +74,7 @@ public class EnemySpawn : MonoBehaviour
             {
                 waveTimer = 0;
                 waveNumber++;
+                Score.addupexp += 1 * difficultyBuffer;
                 if(Score.difficulty > 1)
                 {
                     CheckForBossWave();
