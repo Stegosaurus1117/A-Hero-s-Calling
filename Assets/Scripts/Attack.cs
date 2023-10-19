@@ -16,6 +16,8 @@ public class Attack : MonoBehaviour
     private GameObject instSlash;
     private GameObject instProjectile;
     private GameObject instExpander;
+
+    private AudioSource shootsound;
     
     private LineRenderer LR;
 
@@ -51,6 +53,7 @@ public class Attack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        shootsound = GetComponent<AudioSource>();
         StatScript = GetComponent<Stats>();
         AS = GameObject.Find("Abilities").GetComponent<Abilities>();
         player = GameObject.Find("Player");
@@ -60,8 +63,8 @@ public class Attack : MonoBehaviour
         canExpand = true;
 
         meleeRate = 0.2f;
-        
 
+        shootsound.Stop();
     }
 
     // Update is called once per frame
@@ -102,10 +105,10 @@ public class Attack : MonoBehaviour
         playerPos = transform.position;
         mousePos = WorldPosition;
 
-        
-        
-        //script.damageValue = StatScript.projDmg;
 
+
+        //script.damageValue = StatScript.projDmg;
+        
         isFired = true;
         Invoke("DestroyProjectile", 3f);
     }
@@ -136,7 +139,7 @@ public class Attack : MonoBehaviour
                 case EType.projectile:
                     instProjectile = Instantiate(Projectile, transform.position, transform.rotation);
                     instProjectile.GetComponent<Projectile>().SetDefault(StatScript.projDmg, 3f, projSpeed);
-
+                    shootsound.Play();
                     isFired = true;
                     Invoke("ResetProjectile", StatScript.fireRate);
                     break;

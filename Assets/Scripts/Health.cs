@@ -8,6 +8,7 @@ public class Health : MonoBehaviour
 {
     //get damageValue component from projectile base script to do damage to enemy
     public float health = 100;
+    
     /*
     private float meleeTimer = 0f;
     private float projTimer = 0f;
@@ -27,6 +28,8 @@ public class Health : MonoBehaviour
     private float cooldownTime = 0.15f;
     private float currentTime;
     private bool canBeDamaged = true;
+    private AudioSource ouchsoudn;
+    public GameObject deathsound;
 
     EnemyBehaviour EB;
 
@@ -35,8 +38,8 @@ public class Health : MonoBehaviour
     void Start()
     {
         EB = GetComponent<EnemyBehaviour>();
-
-      
+        ouchsoudn = GetComponent<AudioSource>();
+        ouchsoudn.Stop();
     }
 
     // Update is called once per frame
@@ -78,6 +81,7 @@ public class Health : MonoBehaviour
 
         if (health <= 0)
         {
+            Instantiate(deathsound, transform.position, Quaternion.identity);
             Invoke("KillSelf", 0.05f);
             
         }
@@ -98,6 +102,7 @@ public class Health : MonoBehaviour
 
     void KillSelf()
     {
+        
         Destroy(gameObject);
         
         Score.score += 10;
@@ -110,6 +115,7 @@ public class Health : MonoBehaviour
         if (objScript != null)
         {
             Attack(objScript);
+            ouchsoudn.Play();
         }
 
         
@@ -133,6 +139,7 @@ public class Health : MonoBehaviour
             EnemyBehaviour behaviour = GetComponent<EnemyBehaviour>();
             behaviour?.Damaged();
             EB.flash();
+            
         }
 
        
