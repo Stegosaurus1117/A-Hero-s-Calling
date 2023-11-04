@@ -17,7 +17,7 @@ public class Song : MonoBehaviour
     void Update()
     {
         songTimer += Time.deltaTime;
-        if(songTimer > 130f)
+        if(songTimer > 145f)
         {
             RestartSong();
             songTimer = 0;

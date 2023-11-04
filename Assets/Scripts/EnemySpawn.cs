@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class EnemySpawn : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class EnemySpawn : MonoBehaviour
     public GameObject speedyEnemy;
     public GameObject bossEnemy;
     public GameObject minionEnemy;
+    public TextMeshProUGUI waveText;
     public float spawnYLimit = 16f;
     public float spawnXLimit = 25f;
 
@@ -37,7 +39,8 @@ public class EnemySpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(Score.difficulty == 1)
+        waveText.text = "Wave: 1";
+        if (Score.difficulty == 1)
         {
             difficultyBuffer += 0.5f;
             enemySpawnRate += 1.5f;
@@ -64,7 +67,7 @@ public class EnemySpawn : MonoBehaviour
         if (BossNumber == 0 && bosswave == true)
         {
             bosswave = false;
-            waveNumber++;
+            
         }
 
         waveTimer += Time.deltaTime;
@@ -74,6 +77,7 @@ public class EnemySpawn : MonoBehaviour
             {
                 waveTimer = 0;
                 waveNumber++;
+                waveText.text = "Wave: " + (waveNumber);
                 Score.addupexp += 1 * difficultyBuffer;
                 if(Score.difficulty > 1)
                 {
