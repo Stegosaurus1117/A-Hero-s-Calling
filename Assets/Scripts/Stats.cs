@@ -65,7 +65,7 @@ public class Stats : MonoBehaviour
         if (collision.gameObject.tag == "Enemy"|| collision.gameObject.tag == "minion")
         {
             flash();
-            health -= 10;
+            //health -= 10;
             //Debug.Log(health);
         }
     }

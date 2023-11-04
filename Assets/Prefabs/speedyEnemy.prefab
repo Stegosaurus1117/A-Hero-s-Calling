@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 611326ffeb8b64a4083cf8a575264ced, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySpeed: 300
+  enemySpeed: 150
   noChaseRadius: 0
 --- !u!114 &8659711993988501732
 MonoBehaviour:
