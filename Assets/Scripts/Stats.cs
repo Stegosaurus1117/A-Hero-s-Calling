@@ -49,10 +49,14 @@ public class Stats : MonoBehaviour
         }
         
     }
-    
+
     void KillSelf()
     {
         Destroy(gameObject);
+        if(Score.GameScore > Score.HighScore)
+        {
+            Score.HighScore = Score.GameScore;
+        }
         SceneManager.LoadScene(2);
         Score.score = 0;
         //Score.experience += Score.addupexp;

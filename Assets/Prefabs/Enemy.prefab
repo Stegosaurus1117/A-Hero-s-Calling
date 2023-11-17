@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoneyForKill: 10
+  ScoreForKill: 25
 --- !u!82 &-8984771967357468456
 AudioSource:
   m_ObjectHideFlags: 0

@@ -30,6 +30,7 @@ public class BossBehaviour : MonoBehaviour
         {
             spawnScript.BossNumber -= 1; 
             Score.score += 500;
+            Score.GameScore += 500;
             Destroy(gameObject);
         }
         if(spawnTimer > spawnspeed)

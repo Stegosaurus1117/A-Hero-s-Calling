@@ -22,6 +22,7 @@ public class ChangeDifficulty : MonoBehaviour
     {
         Score.difficulty = difficulty;
         Score.score = 0;
+        Score.GameScore = 0;
         SceneManager.LoadScene(1);
         Debug.Log(Score.difficulty);
 

@@ -10,6 +10,8 @@ public class GUI : MonoBehaviour
 {
     private Canvas canvas;
     public TextMeshProUGUI text;
+    public TextMeshProUGUI Scoretext;
+   
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +22,9 @@ public class GUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Scoretext.text = "Score: " + Score.GameScore;
         text.text = "$:" + Score.score;
+  
     }
 
 }
