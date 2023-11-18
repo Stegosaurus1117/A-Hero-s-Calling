@@ -28,7 +28,7 @@ public class Health : MonoBehaviour
     private float cooldownTime = 0.15f;
     private float currentTime;
     private bool canBeDamaged = true;
-    private AudioSource ouchsoudn;
+    private AudioSource ouchsound;
     public GameObject deathsound;
 
     EnemyBehaviour EB;
@@ -38,8 +38,12 @@ public class Health : MonoBehaviour
     void Start()
     {
         EB = GetComponent<EnemyBehaviour>();
-        ouchsoudn = GetComponent<AudioSource>();
-        ouchsoudn.Stop();
+        ouchsound = GetComponent<AudioSource>();
+        
+        if (ouchsound != null)
+        {
+            ouchsound.Stop();
+        }
     }
 
     // Update is called once per frame
@@ -81,9 +85,11 @@ public class Health : MonoBehaviour
 
         if (health <= 0)
         {
-            Instantiate(deathsound, transform.position, Quaternion.identity);
+            if (deathsound != null)
+            {
+                Instantiate(deathsound, transform.position, Quaternion.identity);
+            }
             Invoke("KillSelf", 0.05f);
-            
         }
     }
 
@@ -115,7 +121,11 @@ public class Health : MonoBehaviour
         if (objScript != null)
         {
             Attack(objScript);
-            ouchsoudn.Play();
+
+            if (ouchsound != null)
+            {
+                ouchsound.Play();
+            }
         }
 
         

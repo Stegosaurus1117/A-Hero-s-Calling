@@ -96,7 +96,7 @@ public class EnemyBehaviour : MonoBehaviour
             following = false;
             force = -direction.normalized * Time.deltaTime * enemySpeed * 5;
             Invoke("ReturnToNormal", 0.35f);
-            Debug.Log("u");
+            //Debug.Log("u");
         }
     }
 
