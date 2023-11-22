@@ -6,15 +6,17 @@ using UnityEngine;
 public class EnemyBehaviour : MonoBehaviour 
 {
 
-    GameObject player;
-
-    public float enemySpeed;
+   GameObject player;
+   
+   public float enemySpeed;
    public float noChaseRadius;
     //public float stopForceMultiplier;
     
     float distance;
     bool isDamaged;
     bool following = true;
+
+    public bool isboss;
 
     Vector3 directionOffset;
     Vector3 direction;
@@ -44,7 +46,7 @@ public class EnemyBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(player != null)
+        if(player != null && !isboss)
         {
             distance = Vector3.Distance(transform.position, player.transform.position);
            

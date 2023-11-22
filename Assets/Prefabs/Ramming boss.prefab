@@ -139,7 +139,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 14b4ef6d822b0044c864df44495c58a2, type: 2}
+  - {fileID: 2100000, guid: c79764a77446b954d9a0fef109cb5c6b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -350,6 +350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemySpeed: 50
   noChaseRadius: 0
+  isboss: 1
 --- !u!82 &829260852621514683
 AudioSource:
   m_ObjectHideFlags: 0
@@ -471,7 +472,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f10ec52869e22c4f8bfc693f8d0533c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RamPower: 200
+  cross1: {fileID: 5319396676021835290}
+  cross2: {fileID: 6201815874777343885}
+  RamPower: 20
 --- !u!1 &6154695064773723139
 GameObject:
   m_ObjectHideFlags: 0
@@ -639,7 +642,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 14b4ef6d822b0044c864df44495c58a2, type: 2}
+  - {fileID: 2100000, guid: c79764a77446b954d9a0fef109cb5c6b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

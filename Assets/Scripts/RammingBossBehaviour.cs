@@ -5,9 +5,16 @@ using UnityEngine;
 public class RammingBossBehaviour : BossBehaviour
 {
     GameObject Player;
+
+    public GameObject cross1;
+    public GameObject cross2;
+
     Rigidbody2D rb;
 
     Vector3 rDirection;
+
+    Color safeColour = Color.green;
+    Color dangerColour = Color.red;
 
     public float RamPower;
 
@@ -20,6 +27,8 @@ public class RammingBossBehaviour : BossBehaviour
     {
         Player = GameObject.Find("Player");
         rb = GetComponent<Rigidbody2D>();
+        cross1.GetComponent<MeshRenderer>().material.color = safeColour;
+        cross2.GetComponent<MeshRenderer>().material.color = safeColour;
     }
 
     // Update is called once per frame
@@ -30,8 +39,9 @@ public class RammingBossBehaviour : BossBehaviour
         if (directionTimer >= 5)
         {
             directionTimer = 0;
-            DoRam();
-            Invoke("StopRam", 2f);
+            SetRamDirection();
+            Invoke("DoRam", 2f);
+            Invoke("StopRam", 3f);
         }
 
         if (CheckPlayerDistance() > 30f && isRamming)
@@ -42,9 +52,10 @@ public class RammingBossBehaviour : BossBehaviour
     }
     void DoRam()
     {
-        rDirection = Player.transform.position - transform.position;
         rb.AddForce(rDirection.normalized * RamPower, ForceMode2D.Impulse);
         isRamming = true;
+        cross1.GetComponent<MeshRenderer>().material.color = dangerColour;
+        cross2.GetComponent<MeshRenderer>().material.color = dangerColour;
     }
 
     float CheckPlayerDistance()
@@ -56,9 +67,14 @@ public class RammingBossBehaviour : BossBehaviour
     {
         rb.velocity = rb.velocity * 0;
         isRamming = false;
+        cross1.GetComponent<MeshRenderer>().material.color = safeColour;
+        cross2.GetComponent<MeshRenderer>().material.color = safeColour;
+
     }
 
+    void SetRamDirection()
+    {
+        rDirection = Player.transform.position - transform.position;
+    }
 
-    
-    
 }
