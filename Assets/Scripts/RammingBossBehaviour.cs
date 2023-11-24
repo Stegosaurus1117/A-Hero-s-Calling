@@ -15,6 +15,7 @@ public class RammingBossBehaviour : BossBehaviour
 
     Color safeColour = Color.green;
     Color dangerColour = Color.red;
+    Color prepareColour = Color.yellow;
 
     public float RamPower;
 
@@ -40,6 +41,7 @@ public class RammingBossBehaviour : BossBehaviour
         {
             directionTimer = 0;
             SetRamDirection();
+            Invoke("PrepareRam", 1);
             Invoke("DoRam", 2f);
             Invoke("StopRam", 3f);
         }
@@ -70,6 +72,12 @@ public class RammingBossBehaviour : BossBehaviour
         cross1.GetComponent<MeshRenderer>().material.color = safeColour;
         cross2.GetComponent<MeshRenderer>().material.color = safeColour;
 
+    }
+
+    void PrepareRam()
+    {
+        cross1.GetComponent<MeshRenderer>().material.color = prepareColour;
+        cross2.GetComponent<MeshRenderer>().material.color = prepareColour;
     }
 
     void SetRamDirection()

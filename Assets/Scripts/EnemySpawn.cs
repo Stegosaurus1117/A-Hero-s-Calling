@@ -13,6 +13,7 @@ public class EnemySpawn : MonoBehaviour
     public GameObject speedyEnemy;
     public GameObject bossEnemy;
     public GameObject minionEnemy;
+    public GameObject[] bossOptions;
     public TextMeshProUGUI waveText;
     public float spawnYLimit = 16f;
     public float spawnXLimit = 25f;
@@ -39,6 +40,10 @@ public class EnemySpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (Score.difficulty < 3)
+        {
+            bossOptions[1].SetActive(false);
+        }
         waveText.text = "Wave: 1";
         if (Score.difficulty == 1)
         {
@@ -196,7 +201,7 @@ public class EnemySpawn : MonoBehaviour
                 spawns[2] = spawnUpPos;
                 spawns[3] = spawnBottomPos;
                 //Instantiate(bossEnemy, transform.position + new Vector3(0, 2, 0), transform.rotation);
-                Instantiate(bossEnemy, spawns[Random.Range(0, spawns.Length)], transform.rotation);
+                Instantiate(bossOptions[Random.Range(0, 1)], spawns[Random.Range(0, spawns.Length)], transform.rotation);
                 BossNumber++;
                 
                
