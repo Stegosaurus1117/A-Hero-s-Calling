@@ -29,5 +29,13 @@ public class MinionBoss : BossBehaviour
             spawnTimer = 0;
             Instantiate(minion, transform.position, transform.rotation);
         }
+
+        if (healthScript.health <= 0)
+        {
+            spawnScript.BossNumber -= 1;
+            Score.score += 500;
+            Score.GameScore += 500;
+            Destroy(gameObject);
+        }
     }
 }

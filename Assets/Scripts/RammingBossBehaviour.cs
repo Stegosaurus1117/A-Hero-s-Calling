@@ -26,6 +26,8 @@ public class RammingBossBehaviour : BossBehaviour
     // Start is called before the first frame update
     protected override void Start()
     {
+        base.Start();
+
         Player = GameObject.Find("Player");
         rb = GetComponent<Rigidbody2D>();
         cross1.GetComponent<MeshRenderer>().material.color = safeColour;
@@ -35,6 +37,15 @@ public class RammingBossBehaviour : BossBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (healthScript.health <= 0)
+        {
+            spawnScript.BossNumber -= 1;
+            Score.score += 500;
+            Score.GameScore += 500;
+            Destroy(gameObject);
+        }
+
         directionTimer += Time.deltaTime;
 
         if (directionTimer >= 5)
@@ -50,6 +61,7 @@ public class RammingBossBehaviour : BossBehaviour
         {
             StopRam();
         }
+
        
     }
     void DoRam()

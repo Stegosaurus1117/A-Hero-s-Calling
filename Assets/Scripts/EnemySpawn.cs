@@ -27,6 +27,7 @@ public class EnemySpawn : MonoBehaviour
     float waveTimer;
     float waveDuration = 15f;
 
+    int chosenBoss;
     int EnemyType;
     int EnemyNumber;
     int waveNumber;
@@ -40,10 +41,7 @@ public class EnemySpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (Score.difficulty < 3)
-        {
-            bossOptions[1].SetActive(false);
-        }
+        
         waveText.text = "Wave: 1";
         if (Score.difficulty == 1)
         {
@@ -68,7 +66,6 @@ public class EnemySpawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         if (BossNumber == 0 && bosswave == true)
         {
             bosswave = false;
@@ -180,14 +177,26 @@ public class EnemySpawn : MonoBehaviour
 
     void CheckForBossWave()
     {
+        switch (Score.difficulty)
+        {
+            case 2:
+                SpawnBoss(0, 0);
+                break;
+            case 3:
+                SpawnBoss(0, bossOptions.Length);
+            break;
+        }
+    }
+
+    void SpawnBoss(int minIndex, int maxIndex)
+    {
         if (waveNumber % 8 == 0)
         {
             int wave5Fold = waveNumber / 8;
 
             if (waveNumber > 40) wave5Fold = maxBossSpawn;
-            
-            
-            for(int i = 0; i < wave5Fold; i++)
+
+            for (int i = 0; i < wave5Fold; i++)
             {
                 Vector3[] spawns = new Vector3[4];
 
@@ -200,17 +209,11 @@ public class EnemySpawn : MonoBehaviour
                 spawns[1] = spawnRightPos;
                 spawns[2] = spawnUpPos;
                 spawns[3] = spawnBottomPos;
-                //Instantiate(bossEnemy, transform.position + new Vector3(0, 2, 0), transform.rotation);
-                Instantiate(bossOptions[Random.Range(0, 1)], spawns[Random.Range(0, spawns.Length)], transform.rotation);
+                Instantiate(bossOptions[Random.Range(minIndex, maxIndex)], spawns[Random.Range(0, spawns.Length)], transform.rotation);
                 BossNumber++;
-                
-               
             }
-            bosswave = true;
-           
         }
-        
 
-       
+        bosswave = true;
     }
 }

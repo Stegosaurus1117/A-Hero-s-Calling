@@ -176,6 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemySpeed: 50
   noChaseRadius: 0
+  isboss: 0
 --- !u!114 &7740070647324325414
 MonoBehaviour:
   m_ObjectHideFlags: 0
