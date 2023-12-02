@@ -15,6 +15,8 @@ public class coins : MonoBehaviour
     public float bobSpeed = 0.001f;
     float bobDirection = -1;
     float timeCounter = 0f;
+    float timeUntilDestroy = 15;
+    float aliveTime;
     Vector3 posBuffer;
     
     // Start is called before the first frame update
@@ -31,6 +33,12 @@ public class coins : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Score.isPlaying)
+        {
+            aliveTime += Time.deltaTime;
+        }
+        
+
         timeCounter += Time.deltaTime;
         float output = Mathf.Sin(timeCounter);
 
@@ -52,6 +60,10 @@ public class coins : MonoBehaviour
         {
             bobDirection = 1;
         }*/
+        if(aliveTime > timeUntilDestroy)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
