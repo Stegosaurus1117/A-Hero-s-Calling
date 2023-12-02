@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 611326ffeb8b64a4083cf8a575264ced, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySpeed: 200
+  enemySpeed: 150
   noChaseRadius: 0
   isboss: 0
 --- !u!114 &8659711993988501732
@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62118ca17f1574f4f9ebc26af6062a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin: {fileID: 3068106853941198499, guid: bab46f22e5f02fc4d95d2f563ccfa55e, type: 3}
   MoneyForKill: 5
   ScoreForKill: 25
 --- !u!82 &5813293658296302518

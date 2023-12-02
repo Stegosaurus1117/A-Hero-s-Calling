@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class KillSelf : MonoBehaviour
 {
+    public GameObject coin;
+
     public int MoneyForKill;
     public int ScoreForKill;
     Health healthscript;
@@ -33,6 +35,10 @@ public class KillSelf : MonoBehaviour
     {
         if(healthscript.health <= 0)
         {
+            if (Random.Range(0, 100) < 5)
+            {
+                Instantiate(coin, transform.position, transform.rotation);
+            }
             Destroy(gameObject);
             Score.score += MoneyForKill;
             Score.GameScore += ScoreForKill;
