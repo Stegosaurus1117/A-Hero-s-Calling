@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 611326ffeb8b64a4083cf8a575264ced, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySpeed: 150
+  enemySpeed: 300
   noChaseRadius: 2
   isboss: 0
 --- !u!114 &7749531192346148923
@@ -172,5 +172,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62118ca17f1574f4f9ebc26af6062a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin: {fileID: 0}
   MoneyForKill: 0
   ScoreForKill: 0

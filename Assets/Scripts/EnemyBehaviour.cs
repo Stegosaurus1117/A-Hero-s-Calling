@@ -54,7 +54,7 @@ public class EnemyBehaviour : MonoBehaviour
                 direction = player.transform.position - transform.position;
             if(following == true)
             {
-                force = direction.normalized * Time.deltaTime * enemySpeed;
+                force = direction.normalized * Time.deltaTime * enemySpeed * 2;
 
             }
             rb.velocity = force;
